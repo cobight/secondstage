@@ -1,6 +1,8 @@
-# Runtime类
+# 多线程
 
-## exec
+## Runtime类
+
+### exec
 
 模拟cmd的ping
 
@@ -32,7 +34,7 @@ try {
 }   
 ```
 
-## shutdownhook
+### shutdownhook
 
 ```
 
@@ -53,7 +55,7 @@ public class ShutdownHookTest {
 }
 ```
 
-## 总结
+### 总结
 
 Runtime用处非常多，偏底层
 
@@ -69,9 +71,9 @@ Runtime功能强大，但需要合理利用，很多攻击是通过Runtime执行
 
 但是使用shutdownhook还是很方便的，用来做停止任务的后续处理。
 
-# Thread类
+## Thread类
 
-## 先继承后调用
+### 先继承后调用
 
 用类继承Thread然后new对象然后调用，或者new 类名().start直接调用
 
@@ -99,7 +101,7 @@ public class PingIpExtendsThread extends Thread {
 }
 ```
 
-## 实现Runnable
+### 实现Runnable
 
 准备运行内容，用thread执行
 
@@ -121,7 +123,7 @@ public class MTImplementsRunnable implements Runnable{
 }
 ```
 
-## 实现callable
+### 实现callable
 
 有返回值的callable
 
@@ -163,7 +165,7 @@ public class MTImplementsCallable implements Callable {
 }
 ```
 
-## 直接写内容跑的
+### 直接写内容跑的
 
 
 
@@ -188,7 +190,7 @@ new Thread (() -> System.out.println("子线程开启！")).start();
 
 
 
-## 线程池
+### 线程池
 
 ```java
 public class MTPool implements Runnable{
@@ -222,7 +224,7 @@ public class MTPool implements Runnable{
 
 
 
-## synchronized锁与加减法
+### synchronized锁与加减法
 
 一个静态变量 a =1000，两个线程+1，两个线程-1，最后返回1000
 
@@ -259,7 +261,7 @@ public class demo1 extends Thread {
 }
 ```
 
-## 死锁
+### 死锁
 
 连锁的死锁
 

@@ -20,7 +20,7 @@ public class M3u8ThreadDownLoad {
     public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
         //自己换
-        String url = "https://bobo1.huamusoso.com/hd/wodedianying_water_m3u8/guochanjingpin/195_20200531_00345/195_20200531_00345.m3u8";
+        String url = "https://play.093ch.com/20200126/90/901/901.mp4.m3u8";
         long time = new Date().getTime();
         //System.out.println(new File("").getAbsolutePath());
         File f = new File("download\\" + time);
@@ -32,7 +32,7 @@ public class M3u8ThreadDownLoad {
          * 参数二保存路径
          * 参数三线程数量
          */
-        t.load_m3u8(url, "" + time, 10);
+        t.load_m3u8(url, "" + time, 12);
         long stop = System.currentTimeMillis();
         long allsecond=(stop - start)/1000, min=allsecond/60,second=allsecond-60*min;
 

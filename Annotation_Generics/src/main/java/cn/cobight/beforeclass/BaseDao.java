@@ -1,6 +1,5 @@
-package cn.cobight.util;
+package cn.cobight.beforeclass;
 
-import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.*;
 
@@ -112,12 +111,12 @@ public class BaseDao {
     }
 
     //封装查询
-    public static List<Map<String, Object>> selectAll(String sql, Object... obs) {
+    public static List<Map> selectAll(String sql, Object... obs) {
         Connection con = null;
         PreparedStatement psmt = null;
         ResultSet rs = null;
         con = getCon();
-        List<Map<String, Object>> ls = new ArrayList<Map<String, Object>>();
+        List<Map> ls = new ArrayList<Map>();
         try {
             psmt = con.prepareStatement(sql);
             setPms(psmt, obs);
@@ -138,99 +137,5 @@ public class BaseDao {
             closeAll(con, psmt, rs);
         }
         return ls;
-    }
-
-    //泛型反射封装
-    //通用的返回实体集合
-    public static <T> List<T> selectEntityByParam(String sql,Class<T> classT,Object... params){
-        Connection con=null;
-        PreparedStatement preparedStatement=null;
-        ResultSet resultSet=null;
-        try {
-            con = getCon();//连接数据库
-            preparedStatement = con.prepareStatement(sql);//打包执行对象
-            setPms(preparedStatement,params);//设置参数
-            resultSet = preparedStatement.executeQuery();//执行查询，返回结果
-
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            int columnCount = metaData.getColumnCount();
-
-            //定义一个返回的结果集合
-            List<T> tlist= new ArrayList<T>();
-            T t = null;
-            //select  `id`, `username`, `realname`, `age`, `mobilenum`, `email` from tb_teacher
-            while (resultSet.next()){
-                t=classT.newInstance();
-                for (int i = 1; i <= columnCount; i++) {
-                    String columnName = metaData.getColumnName(i);
-                    Field declaredField = classT.getDeclaredField(columnName);
-                    declaredField.setAccessible(true);
-                    declaredField.set(t,resultSet.getObject(i));
-                }
-                tlist.add(t);
-            }
-            return tlist;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } finally {
-            closeAll(con,preparedStatement,resultSet);
-        }
-        return null;
-    }
-    public static <T> List<T> selectEntityBy_Param(String sql,Class<T> classT,Object... params){
-        Connection con=null;
-        PreparedStatement preparedStatement=null;
-        ResultSet resultSet=null;
-        try {
-            con = getCon();//连接数据库
-            preparedStatement = con.prepareStatement(sql);//打包执行对象
-            setPms(preparedStatement,params);//设置参数
-            resultSet = preparedStatement.executeQuery();//执行查询，返回结果
-
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            int columnCount = metaData.getColumnCount();
-
-            //定义一个返回的结果集合
-            List<T> tlist= new ArrayList<T>();
-            T t = null;
-            //select  `id`, `username`, `realname`, `age`, `mobilenum`, `email` from tb_teacher
-            while (resultSet.next()){
-                t=classT.newInstance();
-                for (int i = 1; i <= columnCount; i++) {
-                    String columnName = metaData.getColumnName(i);
-                    if (columnName.contains("_")){
-                        int index = columnName.indexOf("_");
-                        String prefixStr = columnName.substring(0,index );
-                        String upperStr = columnName.substring(index+1, index+ 2).toUpperCase();
-                        String suffStr = columnName.substring(index + 2);
-                        columnName=prefixStr+upperStr+suffStr;
-                    }
-                    Field declaredField = classT.getDeclaredField(columnName);
-                    declaredField.setAccessible(true);
-                    declaredField.set(t,resultSet.getObject(i));
-                }
-                tlist.add(t);
-            }
-            return tlist;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } finally {
-            closeAll(con,preparedStatement,resultSet);
-        }
-        return null;
     }
 }
