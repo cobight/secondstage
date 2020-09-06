@@ -22,7 +22,10 @@ public class SocketGetTools {
     private Map<String, String> headers = new LinkedHashMap<>();
     private Map<String, String> responseHeader = new LinkedHashMap<>();
     private ByteArrayOutputStream byteArrayOutputStream;
-
+    private String name;
+    public void setName(String name){
+        this.name = name;
+    }
     public SocketGetTools(String url) {
         if (url.substring(0, 5).equals("https")) {
             this.url = url.substring(0, 4) + url.substring(5);
@@ -103,6 +106,9 @@ public class SocketGetTools {
                 }
             }
             if (getBody){
+//                if (this.name!= null){
+//                    System.out.println(this.name);
+//                }
                 byteArrayOutputStream.write(temp,0,len);
                 byteArrayOutputStream.flush();
             }else {

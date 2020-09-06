@@ -1,22 +1,25 @@
-package cn.cobight.Version2_SplitePack;
+package cn.cobight.Version3_MoreSource;
 
 
 import cn.cobight.Util.RequestTool;
 import cn.cobight.Util.SocketGetTools;
 import com.jayway.jsonpath.JsonPath;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
 
 /**
  * fileName:BiliTool
  * description: 利用socket模拟浏览器发送请求，下载bili视频并合成
- * 第二个版本，音频与视频的m4s文件拆包，下载好像没提速
+ * 第三个版本，多源联通，多个下载源，但是没用又是138秒，F U C K
  * author:cobight
  * createTime:2020/9/4 14:18
- * version:2.0.0
+ * version:3.0.0
  */
 //@SuppressWarnings("all")
 public class BiliTool {
@@ -25,12 +28,8 @@ public class BiliTool {
         downbili("BV1o5411873u");
 
     }
-
-    public static void downbili(String bvPath) throws ExecutionException, InterruptedException, IOException {
-        long start = System.currentTimeMillis();
-        String BV = "https://www.bilibili.com/video/" + bvPath;
-        //第一个请求偷下懒，没用socket
-        String HTML = RequestTool.sendGet(BV, null);
+    public static Map<String, String> getSource(String bv){
+        String HTML = RequestTool.sendGet(bv, null);
         int index1 = HTML.indexOf("<script>window.__playinfo__");
         int index2 = HTML.indexOf("</script>", index1);
         String mediaJson = HTML.substring(index1 + 28, index2);
@@ -39,16 +38,31 @@ public class BiliTool {
         String videoUrl = JsonPath.parse(mediaJson).read("$.data.dash.video[0].baseUrl");
         String videoInitialization = JsonPath.parse(mediaJson).read("$.data.dash.video[0].SegmentBase.Initialization");
         String videoIndexRange = JsonPath.parse(mediaJson).read("$.data.dash.video[0].SegmentBase.indexRange");
-        System.out.println(videoUrl + "\n" + videoInitialization + "\n" + videoIndexRange);
+        //System.out.println(videoUrl + "\n" + videoInitialization + "\n" + videoIndexRange);
         String audioUrl = JsonPath.parse(mediaJson).read("$.data.dash.audio[0].baseUrl");
         String audioInitialization = JsonPath.parse(mediaJson).read("$.data.dash.audio[0].SegmentBase.Initialization");
         String audioIndexRange = JsonPath.parse(mediaJson).read("$.data.dash.audio[0].SegmentBase.indexRange");
-        System.out.println(audioUrl + "\n" + audioInitialization + "\n" + audioIndexRange);
+        Map<String, String> map = new HashMap<>();
+        map.put("videoUrl",videoUrl);
+        map.put("videoInitialization",videoInitialization);
+        map.put("videoIndexRange",videoIndexRange);
+        map.put("audioUrl",audioUrl);
+        map.put("audioInitialization",audioInitialization);
+        map.put("audioIndexRange",audioIndexRange);
+        //System.out.println(audioUrl + "\n" + audioInitialization + "\n" + audioIndexRange);
+        return map;
+    }
+    public static void downbili(String bvPath) throws ExecutionException, InterruptedException, IOException {
+        long start = System.currentTimeMillis();
+        String BV = "https://www.bilibili.com/video/" + bvPath;
+        //第一个请求偷下懒，没用socket
+        Map<String, String> source1 = getSource(BV);
+        Map<String, String> source2 = getSource(BV);
         //通过 Executors获取一个定长的线程池  定长为3 超过线程池长度时就会等待
         ExecutorService executorService = Executors.newFixedThreadPool(10);//返回一个执行器的服务类
         //使用线程池启动线程
-        donwLoad audio = new donwLoad(audioUrl, audioIndexRange, BV, "https://www.bilibili.com");
-        donwLoad video = new donwLoad(videoUrl, videoIndexRange, BV, "https://www.bilibili.com");
+        donwLoad audio = new donwLoad(source1.get("audioUrl"), source1.get("audioIndexRange"), BV, "https://www.bilibili.com");
+        donwLoad video = new donwLoad(source1.get("videoUrl"), source1.get("videoIndexRange"), BV, "https://www.bilibili.com");
         FutureTask<String> audioFutureTask = new FutureTask<String>(audio);
         FutureTask<String> videoFutureTask = new FutureTask<String>(video);
         //获取最大range
@@ -67,18 +81,22 @@ public class BiliTool {
             return;
         }
         //下载最大range
-        downData audio1 = new downData(audioUrl, "0-" + (s1 - 1), BV, "https://www.bilibili.com");
+        downData audio1 = new downData(source1.get("audioUrl"), "0-" + (s1 - 1), BV, "https://www.bilibili.com");
         FutureTask<ByteArrayOutputStream> audioFutureTask1 = new FutureTask<ByteArrayOutputStream>(audio1);
         executorService.execute(audioFutureTask1);
         int packNum = 9;
         int packAvg = s2 / packNum;//平均一块的大小
         ArrayList<FutureTask<ByteArrayOutputStream>> downDataArrayList = new ArrayList<>();
         for (int i = 0; i < packNum - 1; i++) {
-            downData downData = new downData(videoUrl, (0 + packAvg * i) + "-" + (packAvg * (i + 1) - 1), BV, "https://www.bilibili.com");
-            //downData.setName("video:"+i);
-            downDataArrayList.add(new FutureTask<ByteArrayOutputStream>(downData));
+            if (i % 2==0){
+                downData downData = new downData(source1.get("videoUrl"), (0 + packAvg * i) + "-" + (packAvg * (i + 1) - 1), BV, "https://www.bilibili.com");
+                downDataArrayList.add(new FutureTask<ByteArrayOutputStream>(downData));
+            }else {
+                downData downData = new downData(source2.get("videoUrl"), (0 + packAvg * i) + "-" + (packAvg * (i + 1) - 1), BV, "https://www.bilibili.com");
+                downDataArrayList.add(new FutureTask<ByteArrayOutputStream>(downData));
+            }
         }
-        downData downData = new downData(videoUrl, (packAvg * (packNum - 1)) + "-" + (s2 - 1), BV, "https://www.bilibili.com");
+        downData downData = new downData(source1.get("videoUrl"), (packAvg * (packNum - 1)) + "-" + (s2 - 1), BV, "https://www.bilibili.com");
         //downData.setName("video:"+5);
         downDataArrayList.add(new FutureTask<ByteArrayOutputStream>(downData));
 
@@ -86,13 +104,7 @@ public class BiliTool {
             executorService.execute(byteArrayOutputStreamFutureTask);
         }
         executorService.shutdown();
-        //音频较小，会很快，所以先输出音频
-        ByteArrayOutputStream audioByteArrayOutputStream = audioFutureTask1.get();
-        audioByteArrayOutputStream.writeTo(new FileOutputStream("download/audio.m4s"));
-        long audiotime = System.currentTimeMillis();
-        System.out.println("音频： "+(audiotime - start) / 1000 + "秒");
-        audioByteArrayOutputStream.flush();
-        audioByteArrayOutputStream.close();
+
         ByteArrayOutputStream videoByteArrayOutputStream = new ByteArrayOutputStream();
         for (FutureTask<ByteArrayOutputStream> byteArrayOutputStreamFutureTask : downDataArrayList) {
             ByteArrayOutputStream byteArrayOutputStream = byteArrayOutputStreamFutureTask.get();
@@ -105,6 +117,15 @@ public class BiliTool {
         System.out.println("视频： "+(videotime - start) / 1000 + "秒");
         videoByteArrayOutputStream.flush();
         videoByteArrayOutputStream.close();
+        //音频较小，会很快，所以先输出音频
+        ByteArrayOutputStream audioByteArrayOutputStream = audioFutureTask1.get();
+        audioByteArrayOutputStream.writeTo(new FileOutputStream("download/audio.m4s"));
+        long audiotime = System.currentTimeMillis();
+        System.out.println("音频： "+(audiotime - start) / 1000 + "秒");
+        audioByteArrayOutputStream.flush();
+        audioByteArrayOutputStream.close();
+
+        //mix
         Runtime runtime = Runtime.getRuntime();
         try {
             runtime.exec("download/ffmpeg.exe -i download/video.m4s -i download/audio.m4s -codec copy download/" + bvPath + ".mp4");
