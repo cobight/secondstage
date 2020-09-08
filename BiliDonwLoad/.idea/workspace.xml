@@ -57,7 +57,7 @@
       <recent name="F:\JAVA\secondstage\BiliDonwLoad\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BiliTool (2)">
+  <component name="RunManager" selected="Application.BiliTool (1)">
     <configuration name="BiliTool (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.cobight.Version2_SplitePack.BiliTool" />
       <module name="BiliDonwLoad" />
@@ -125,8 +125,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BiliTool (2)" />
         <item itemvalue="Application.BiliTool (1)" />
+        <item itemvalue="Application.BiliTool (2)" />
         <item itemvalue="Application.BiliTool" />
         <item itemvalue="Application.Demo1" />
         <item itemvalue="Application.SocketTest" />
@@ -150,6 +150,8 @@
       <workItem from="1599290735271" duration="13533000" />
       <workItem from="1599368735536" duration="21257000" />
       <workItem from="1599398845712" duration="3782000" />
+      <workItem from="1599437818321" duration="595000" />
+      <workItem from="1599460561383" duration="2745000" />
     </task>
     <servers />
   </component>
@@ -169,26 +171,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1599375528279" />
-    <state width="1877" height="258" key="GridCell.Tab.0.bottom" timestamp="1599403076340">
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom" timestamp="1599490525306">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599403076340" />
-    <state width="1877" height="258" key="GridCell.Tab.0.center" timestamp="1599403076340">
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599490525306" />
+    <state width="1877" height="258" key="GridCell.Tab.0.center" timestamp="1599490525305">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599403076340" />
-    <state width="1877" height="258" key="GridCell.Tab.0.left" timestamp="1599403076340">
+    <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599490525305" />
+    <state width="1877" height="258" key="GridCell.Tab.0.left" timestamp="1599490525305">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599403076340" />
-    <state width="1877" height="258" key="GridCell.Tab.0.right" timestamp="1599403076340">
+    <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599490525305" />
+    <state width="1877" height="258" key="GridCell.Tab.0.right" timestamp="1599490525306">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599403076340" />
+    <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599490525306" />
     <state x="453" y="161" key="SettingsEditor" timestamp="1599305137719">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="453" y="161" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1599305137719" />
+    <state x="334" y="125" key="new project wizard" timestamp="1599486167615">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="334" y="125" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1599486167615" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1599306565494">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
