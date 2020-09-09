@@ -1,5 +1,7 @@
 package cn.cobight.day1.singleton;
 
+import java.lang.reflect.Constructor;
+
 /**
  * fileName:SlackerSingleton
  * description: 懒汉模式
@@ -16,6 +18,9 @@ public class SlackerSingleton {
 
     //1,私有的构造
     private SlackerSingleton(){
+        if (slackerSingleton!=null){
+            throw new RuntimeException("SlackerSingleton已经构造了实例");
+        }
     }
     //2,私有静态该类的属性
     private static volatile SlackerSingleton slackerSingleton = null;
@@ -41,5 +46,21 @@ public class SlackerSingleton {
             }
         }
         return slackerSingleton;
+    }
+    public static synchronized SlackerSingleton  getSlackerSingleton1(){
+        if(slackerSingleton == null) {//多线程的噩梦，当多个线程同时调用函数，会阻塞
+            slackerSingleton = new SlackerSingleton();
+        }
+        return slackerSingleton;
+    }
+
+    public static void main(String[] args) throws Exception{
+        Class<SlackerSingleton> slackerSingletonClass = SlackerSingleton.class;
+        Constructor<SlackerSingleton> c = slackerSingletonClass.getDeclaredConstructor(null);
+        c.setAccessible(true);
+        SlackerSingleton slackerSingleton = c.newInstance();
+        SlackerSingleton slackerSingleton1 = c.newInstance();
+        System.out.println(slackerSingleton);
+        System.out.println(slackerSingleton1);
     }
 }
