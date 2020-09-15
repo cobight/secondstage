@@ -183,6 +183,24 @@ select 1,'国际新闻',sysdate,'疫情很严重' from dual
 
 ## 更新和删除 和mysql完全一样
 
+
+
+## TRUNCATE 清空
+
+TRUNCATE TABLE TableName
+
+特点：
+
+1、删除表全部内容，但保留表结构
+
+2、速度快，但不可回滚，要三思
+
+3、触发器中没有TRUNCATE，即这个语句无法触发任何操作
+
+4、行标识的序号重置（或者可以说：新行标识所用的计数值重置为该列的种子）
+
+5、DELETE语句每删除一条记录都是一个事务，会产生若干"日志"。但TRUNCATE是释放整个数据页（一个页8K），所以解释了上述的第二点。
+
 ## 序列
 
 oracle 主键或者唯一键能不能像mysql使用auto_increment关键字自增，
@@ -380,7 +398,7 @@ drop tablespace ts_qy119_demo1 including contents and datafiles; -- 删逻辑与
 
 # 函数
 
-
+## 拼接
 
 
 
@@ -394,7 +412,13 @@ drop tablespace ts_qy119_demo1 including contents and datafiles; -- 删逻辑与
    select concat('hello'||' world','!!!!') from dual;
    select concat(job,'-'||ename) ,job,ename  from emp; -- 实际使用
    
-   -- upper lower 大小写转换   java "abc".toUpperCase()
+   
+```
+
+## 大小写转换
+
+```plsql
+-- upper lower 大小写转换   java "abc".toUpperCase()
    select upper('abc') from dual;
    select lower('ABC') from dual;
    
@@ -403,7 +427,13 @@ drop tablespace ts_qy119_demo1 including contents and datafiles; -- 删逻辑与
     
     select upper(lower(ename)),lower(ename),ename from emp;  -- 实际使用
     
-    -- instr 找字符位置  java indexOf  "abc".indexOf('b') = 1 "abc".lastIndexOf('b') = 1
+    
+```
+
+## 字符串位置
+
+```plsql
+-- instr 找字符位置  java indexOf  "abc".indexOf('b') = 1 "abc".lastIndexOf('b') = 1
      select instr('abc','b') from dual;  -- 下标默认从1开始 返回b在abc中第一次出现的位置
     
      select instr('abcbc','b') from dual;
@@ -413,7 +443,13 @@ drop tablespace ts_qy119_demo1 including contents and datafiles; -- 删逻辑与
      select instr('abcbcbc','b',3,2) from dual;-- 返回b在abc中从第3个位置开始第2次出现的位置
      
      select instr('abcbcbc','b',3,5) from dual; -- 返回b在abc中从第3个位置开始第5次出现的位置,没有返回0
-    -- substr  java "abcdef".subString(2,4)   (开始位置，结束位置)   js  subStr(开始位置，长度) 
+    
+```
+
+## 字符串截取
+
+```plsql
+-- substr  java "abcdef".subString(2,4)   (开始位置，结束位置)   js  subStr(开始位置，长度) 
      select substr('abcdef',2,2) from dual; -- 和js subStr一样
      --  'fadfadsf1232221234,123134321af12321ds11,教师节快乐,233333afafd232'  
      -- 使用substr 和instr 拿到  '教师节快乐' 五个字
@@ -434,7 +470,13 @@ drop tablespace ts_qy119_demo1 including contents and datafiles; -- 删逻辑与
      ',',1,2)-1) from dual;
      
      
-     -- rpad右补字符  lpad左补字符
+     
+```
+
+## 字符补全
+
+```plsql
+-- rpad右补字符  lpad左补字符
         
      select rpad('aaa',10,'#') from dual; -- 把aaa在右边用#补全到10位
      select rpad('aaa',2,'#') from dual; 
@@ -453,9 +495,26 @@ drop tablespace ts_qy119_demo1 including contents and datafiles; -- 删逻辑与
      select 'order'||to_char(sysdate,'yyyymmdd')||lpad(seq_order_create_id.nextval,7,0) from dual;
 ```
 
+## 去重
+
+```plsql
+select distinct job from emp;
+```
+
+
+
 ## 空值
 
 用nvl(变量名,0)方法，若变量为null，则为0
+
+## round小数精确位
+
+```plsql
+round(变量，为null时的默认值)
+round（变量1，0）
+```
+
+
 
 # 用户管理
 
@@ -778,6 +837,35 @@ begin
         rollback; --  回滚事务
 end;
 ```
+
+### raise抛异常
+
+code，msg
+
+raise_application_error(-20001,'部门编号为30的员工的工资不能被降低');
+
+```plsql
+create or replace trigger tgr_limit_deptno30_emp  -- 触发器的名称
+before -- 触发时间
+update of sal,comm or delete  -- 触发事件  update of 针对对象中的某些列操作
+on emp  -- 触发对象
+for each row -- 行级触发  针对每一行数据触发
+when(old.deptno=30) -- 满足条件  只针对部门编号为30的员工
+begin
+     -- 判断   :new.sal   获取更新后的工资   :old.sal 获取更新前的工资
+    if updating('sal')  and :new.sal < :old.sal then 
+           raise_application_error(-20001,'部门编号为30的员工的工资不能被降低');
+    elsif   updating('comm')  and :new.comm < :old.comm  then 
+           raise_application_error(-20001,'部门编号为30的员工的奖金不能被降低');
+    elsif  deleting  then
+           raise_application_error(-20001,'部门编号为30的员工不能被辞退');  
+    else
+         return;  -- 不做处理
+    end if;
+end;
+```
+
+
 
 ## 事务控制语言（TCL transaction control language）
 
@@ -1144,14 +1232,14 @@ select distinct job from emp;
 
 select job,round(avg(sal+nvl(comm,0)),2) avgsal  
 from emp group by job order by  avgsal desc;
-
+-------
 select round(avg(sal+nvl(comm,0)),2) avgsal  
 from emp where job='CLERK';
 ------方法
 create or replace function fun_query_avgsal_byjob
 (i_job in emp.job%type)
 return varchar2  -- 指定返回值类型
-is --as也可以
+is --as也可以,功能类似declare定义变量
    t_avgsal emp.sal%type; --定义平均工资变量
 begin
    -- 查询赋值
@@ -1329,7 +1417,7 @@ begin
 end;
 ```
 
-## 游标
+## 游标cursor
 
 数据集合
 
@@ -1390,7 +1478,7 @@ begin
 end;
 ```
 
-显示游标2
+### 显示游标2
 
 ```plsql
 --  显式游标  示例2
@@ -1457,3 +1545,271 @@ end;
 
 ```
 
+### 游标定义
+
+```plsql
+-- 游标（游标变量  一次定义，多次使用）
+--  定义游标变量，既可以获取部门表数据，又可以获取员工表数据，还可以获取其他任何表的数据
+declare
+ -- 定义游标
+   -- 定义游标类型  ref =  reference  
+   type type_cursor is ref cursor;
+   -- 定义游标变量属于上面类型
+   t_type_cursor  type_cursor;
+   -- 定义行变量
+   t_dept_row dept%rowtype;
+   t_emp_row emp%rowtype;
+begin
+  -- 打开游标
+  open t_type_cursor for  select * from dept;
+  -- 提取数据
+  loop 
+      -- 提取一行数据
+      fetch t_type_cursor into t_dept_row;
+      -- 判断退出
+      exit when t_type_cursor%notfound;
+      -- 打印
+      dbms_output.put_line('部门名称'||t_dept_row.dname||'位置'||t_dept_row.loc);
+  end loop;
+  -- 关闭游标
+  close t_type_cursor;
+   dbms_output.put_line('------------------------------------------------------');
+  -- 打开游标
+  open t_type_cursor for  select * from emp;
+  -- 提取数据
+  loop 
+      -- 提取一行数据
+      fetch t_type_cursor into t_emp_row;
+      -- 判断退出
+      exit when t_type_cursor%notfound;
+      -- 打印
+      dbms_output.put_line('员工名称'||t_emp_row.ename||'工资'||t_emp_row.sal);
+  end loop;
+  -- 关闭游标
+  close t_type_cursor;
+end;
+```
+
+### 游标简化写法
+
+```plsql
+-- 游标 (游标的简化写法  for)
+declare
+   -- 定义游标
+   cursor csr_dept is select * from dept; 
+begin
+   -- 省略了打开和关闭过程
+   for row_dept in csr_dept loop
+       -- 打印
+      dbms_output.put_line('部门名称'||row_dept.dname||'位置'||row_dept.loc);
+   end loop;
+end;
+
+------------------
+declare
+   -- 定义游标
+   --  cursor csr_dept is select * from dept; 
+begin
+   -- 省略了打开和关闭过程
+   for row_dept in (select * from dept) loop
+       -- 打印
+      dbms_output.put_line('部门名称'||row_dept.dname||'位置'||row_dept.loc);
+   end loop;
+end;
+```
+
+
+
+# 触发器trigger
+
+## 概念
+
+触发是在事件发生时(DML或者登陆/退出数据库)自动的调用语句块（执行的业务）的一中oracle数据库对象.
+
+DML触发器（进行insert update delete 操作时，隐含自动的执行语句块）
+
+系统触发器（当登陆或者退出数据库时，隐含自动的执行语句块）
+
+## 语法
+
+```plsql
+create [or replace]  trigger   触发器名称
+before/after  触发时间（在事件之前或者之后操作）
+insert/update/delete  触发事件(DML操作，多个操作时可以使用逗号隔开)
+on 表名  触发对象（数据库表）
+[for each row]  行级触发器时使用
+begin
+  --执行业务
+end;
+                
+RAISE_APPLICATION_ERROR用法：
+      RAISE_APPLICATION_ERROR(errorNumber,errorString)
+      errorNumber是数值在-20000到-20999之间，errorString为自定义的错误信息。
+```
+
+
+
+## 指定时间禁止修改指定表
+
+```plsql
+-- 触发器 示例 1   
+-- 周1,6 不能修改emp表
+create or replace trigger tgr_limit_modify_emp  -- 指定触发器的名称
+before -- 触发时间 before 在之前  after 在之后
+insert or update or delete  -- 触发事件  DML事件  多个使用or隔开
+on emp -- 触发对象
+begin
+   -- 触发后执行的业务
+   if to_char(sysdate,'day') in ('星期一','星期六') then 
+       -- 调用oracle提供的错误提示函数
+       raise_application_error(-20001,'周一和周六不能修改emp数据');
+   end if;
+end;
+
+-- 测试触发器
+insert into emp(empno) values(7777);
+update emp set ename='zhangsan' where empno=7369;
+delete from emp;
+delete from emp where deptno=30;
+-- 禁用触发器
+alter trigger tgr_limit_modify_emp disable;
+-- 启用触发器
+alter trigger tgr_limit_modify_emp enable;
+-- 修改用户锁定状态
+-- alter user scott account  lock;
+
+
+select to_char(sysdate,'yyyy') from dual;
+select to_char(sysdate,'mm') from dual;
+select to_char(sysdate,'day') from dual;
+select to_char(sysdate,'hh24') from dual;
+select to_char(sysdate,'yyyy-mm-dd hh24:mi:ss') from dual;
+-- 返回当前日期是星期几
+select to_char(sysdate,'day') from dual;
+select to_char(sysdate+10,'day'),sysdate+10 from dual;
+select to_char(sysdate+100,'day'),sysdate+100 from dual;
+
+select * from emp where empno in(7369,7499)
+select * from emp where to_char(hiredate,'yyyy') in(1981,1982);
+
+```
+
+## 指定时间禁止修改指定表，抛对应异常
+
+```plsql
+-- 触发器 示例 2  
+-- 周1 周6不能修改员工表  对不同的操作提示不同的错误
+--条件谓词   当执行增insert 删delete  改update 时确定到底执行什么事件，不同事件触发不同业务
+create or replace trigger tgr_limit_modify_emp_demo2 -- 指定触发器名称
+before -- 触发时间
+insert or update or delete -- 触发事件
+on emp -- 触发对象
+begin
+    -- 判断是否是周1或者周6
+   -- if to_char(sysdate,'day') in ('星期一','星期六')   then 
+    if to_char(sysdate,'d') in (2,7)   then
+        case when inserting then
+                raise_application_error(-20002,'周1或者6不能添加数据');
+             when updating then
+                raise_application_error(-20003,'周1或者6不能修改数据'); 
+             else -- deleting  
+                raise_application_error(-20004,'周1或者6不能删除数据');  
+        end case; 
+    end if;
+end;
+
+-- 测试 禁用第一个 
+alter trigger tgr_limit_modify_emp disable;
+insert into emp(empno) values(7777);
+update emp set ename='zhangsan' where empno=7369;
+delete from emp;
+delete from emp where deptno=30;
+  
+
+--  返回当前日期是本周的第几天   周日是第一天  从1开始 
+select to_char(sysdate-1,'d') from dual;
+```
+
+## 具体行为的触发器（行级触发器）
+
+```plsql
+-- 触发器 示例 3 
+--  行级触发器  针对触发对象中的数据的每一行做触发  可以和old 修改前的数据 new 修改后的数据联合使用  
+-- 部门30 的人工资不能降低，奖金不能低，也不能删除 
+create or replace trigger tgr_limit_deptno30_emp  -- 触发器的名称
+before -- 触发时间
+update of sal,comm or delete  -- 触发事件  update of 针对对象中的某些列操作
+on emp  -- 触发对象
+for each row -- 行级触发  针对每一行数据触发
+when(old.deptno=30) -- 满足条件  只针对部门编号为30的员工
+begin
+     -- 判断   :new.sal   获取更新后的工资   :old.sal 获取更新前的工资
+    if updating('sal')  and :new.sal < :old.sal then 
+           raise_application_error(-20001,'部门编号为30的员工的工资不能被降低');
+    elsif   updating('comm')  and :new.comm < :old.comm  then 
+           raise_application_error(-20001,'部门编号为30的员工的奖金不能被降低');
+    elsif  deleting  then
+           raise_application_error(-20001,'部门编号为30的员工不能被辞退');  
+    else
+         return;  -- 不做处理
+    end if;
+end;
+
+
+-- 测试
+select * from emp where deptno=30;
+update emp set sal=1599 where empno=7499;   -- 测试降低
+
+update emp set sal=1699 where empno=7499;   -- 测试增加
+update emp set comm=299 where empno=7499;   -- 测试降低
+update emp set comm=399 where empno=7499;   -- 测试增加
+delete from emp where empno=7499;  --  测试删除部门30
+delete from emp where empno=7369;  -- 测试删除其他部门 
+```
+
+## 级联删除的触发器
+
+假如A表引用了个B表的一个外键，A表字段的值只能是B表里有的，如果B表删除一个记录，但是A表中有引用此记录，这样就会崩溃报错，但是设置级联修改与删除，这样就不会出现这种情况，但是若没有设置级联呢
+
+所以可以用触发器，当修改与删除时，联动一些表，模拟出设置的级联效果
+
+```plsql
+-- 触发器 示例 4 
+--  after  后置触发器 用法 
+--  在修改dept表中deptno后，顺便把它级联的（cascade）的人员表中部门编号更新
+
+-- mysql 中  主从表有外键关系时，本身支持级联删除和更新的 当主表中被关联列做修改或者删除时，从表跟着变化
+-- oracle中，主从表有外键关系时，只能级联删除，不支持级联功能
+-- 不级联删除时，直接删除报错  已找到子记录
+delete from dept where deptno=10;
+-- 添加记录
+insert into EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
+values (7777, 'SMITH', 'CLERK', 7902, to_date('17-12-1980', 'dd-mm-yyyy'), 800.00, null, 4);
+-- 级联删除时，不报错
+delete from dept where deptno=1;
+-- 查询结果
+select * from dept;
+select * from emp where empno=7777;
+
+-- 解决就是无法级联更新的问题
+update dept set deptno=11 where deptno=10;  -- 没写触发器之前，无法执行
+
+select length('tgr_update_cascade_emp_deptno') from dual;
+
+create or replace  trigger  tgr_update_cascade_emp_deptno  -- 指定名称
+after  -- 触发时间
+update  --触发事件
+on dept  -- 触发对象
+for each row  -- 针对每一行  old deptno=10  new deptno=60
+begin
+    -- 修改和它关联emp表  中deptno字段
+    update emp set deptno=:new.deptno  where deptno=:old.deptno;
+    -- commit; 触发器中不可以使用tcl语句
+end;
+```
+
+# delete from    truncate 有什么区别： 
+
+​     --  1， delete from 删除整表数据，可以带删除条件  truncate 不可以带删除条件
+​     --  2,  delete from 速度慢，记录日志，短时间可以找回数据(oracle)  truncate 速度快，不记录日志，数据不可以找回
+​     --  3， mysql     delete from 自增不会重置    truncate  自增会重置

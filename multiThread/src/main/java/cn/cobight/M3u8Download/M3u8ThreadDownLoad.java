@@ -20,7 +20,7 @@ public class M3u8ThreadDownLoad {
     public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
         //自己换
-        String url = "https://play.093ch.com/20200126/90/901/901.mp4.m3u8";
+        String url = "https://baidu.com-y-qq.com/20190202/7762_aee57137/1000k/hls/index.m3u8";
         long time = new Date().getTime();
         //System.out.println(new File("").getAbsolutePath());
         File f = new File("download\\" + time);
