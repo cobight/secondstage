@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--1.隔离语句；2.绑定接口-->
+<mapper namespace="cn.cobight.mybatis.dao.EmpDao">
+
+    <select id="listEmpsAndDept" resultMap="empsAndDept">
+        select e.empno as en,e.ename,e.sal,e.job,d.deptno,d.dname,d.loc
+        from emp e join dept d on e.deptno = d.deptno
+    </select>
+<!--  高级结果映射  -->
+    <resultMap id="empsAndDept" type="emp">
+        <id column="en" property="empNo" javaType="Integer" jdbcType="INTEGER"></id>
+        <result column="ename" property="empName"></result>
+        <result column="sal" property="salary"></result>
+        <result column="job" property="job"></result>
+<!--   关联  一对一或者多对一   -->
+        <association property="dept" javaType="cn.cobight.mybatis.entity.Dept">
+            <id column="deptno" property="deptNo"></id>
+            <result column="dname" property="deptName"></result>
+            <result column="loc" property="loc"></result>
+        </association>
+    </resultMap>
+</mapper>

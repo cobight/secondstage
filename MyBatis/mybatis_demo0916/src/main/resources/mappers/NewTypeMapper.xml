@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--1.隔离语句；2.绑定接口-->
+<mapper namespace="cn.cobight.mybatis.dao.NewsDao">
+<!--    <select id="listNewsType" resultType="cn.cobight.mybatis.entity.NewsType">-->
+<!--        select tname tName,addtime  from tb_news_type-->
+<!--    </select>-->
+
+    <select id="listNews" resultMap="NewsAndType">
+        select tn.news_id newsId,tn.title,tn.content,tn.addtime,tn.type_id typeId,tnt.tname
+        from tb_news tn left join tb_news_type tnt on tn.type_id = tnt.type_id
+    </select>
+    <resultMap id="NewsAndType" type="News">
+        <id column="newsId" property="NewsId"></id>
+        <result column="title" property="title"></result>
+        <result column="content" property="content"></result>
+        <result column="addtime" property="addTime"></result>
+        <association property="newsType" javaType="cn.cobight.mybatis.entity.NewsType">
+            <id column="typeId" property="typeId"></id>
+            <result column="tname" property="tName"></result>
+        </association>
+    </resultMap>
+</mapper>

@@ -4,6 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--dtd =document type definition 规定了当前文档类型定义格式-->
 <configuration>
+<!-- 全局配置设置 -->
+    <settings>
+<!--   让控制台打印执行语句     -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+<!--  别名配置  -->
+    <typeAliases>
+<!--        <typeAlias type="cn.cobight.mybatis.entity.Dept" alias="Dept"></typeAlias>-->
+        <package name="cn.cobight.mybatis.entity"/>
+    </typeAliases>
+
 <!--  环境配置，可以配置多个环境  -->
     <environments default="development">
 <!--    具体环境配置    -->
@@ -20,6 +31,7 @@
     </environments>
     <mappers>
         <mapper resource="mappers/DeptMapper.xml"/>
+        <mapper resource="mappers/EmpMapper.xml"/>
         <mapper resource="mappers/NewTypeMapper.xml"/>
     </mappers>
 </configuration>

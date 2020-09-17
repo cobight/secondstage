@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--1.隔离语句；2.绑定接口-->
+<mapper namespace="cn.cobight.mybatis.dao.DeptDao">
+<!--  部门列表查询  -->
+    <select id="listDept" resultType="cn.cobight.mybatis.entity.Dept">
+        select deptno,dname deptName,loc from dept
+    </select>
+<!--  部门列表查询  -->
+    <select id="listDeptByParamIf" parameterType="dept" resultType="cn.cobight.mybatis.entity.Dept">
+        select deptno,dname deptName,loc from dept where 1=1
+        <if test="deptNo != null">
+            and deptno = #{deptNo}
+        </if>
+        <if test="deptName != null and deptName != '' ">
+            and dname like '%'||#{deptName}||'%'
+<!--             and deptno like '%${deptName}%' -->
+        </if>
+    </select>
+<!--  parameter可以省略   -->
+    <select id="getDeptById" parameterType="int" resultType="cn.cobight.mybatis.entity.Dept">
+        select deptno,dname deptName,loc from dept where deptno=#{deptNo}
+    </select>
+<!--  if + where 用法 -->
+    <select id="listDeptByParamIfWhere" parameterType="dept" resultType="cn.cobight.mybatis.entity.Dept">
+        select deptno,dname deptName,loc from dept
+        <where>
+            <if test="deptNo != null">
+                and deptno = #{deptNo}
+            </if>
+            <if test="deptName != null and deptName != '' ">
+                and dname like '%'||#{deptName}||'%'
+                <!--             and deptno like '%${deptName}%' -->
+            </if>
+        </where>
+
+    </select>
+<!-- Choose 用法 -->
+    <select id="listDeptByParamChoose" parameterType="dept" resultType="cn.cobight.mybatis.entity.Dept">
+        select deptno,dname deptName,loc from dept
+        <where>
+            <choose>
+                <when test="deptNo != null">
+                    and deptno = #{deptNo}
+                </when>
+                <when test="deptName != null and deptName != '' ">
+                    and dname like '%'||#{deptName}||'%'
+                    <!--             and deptno like '%${deptName}%' -->
+                </when>
+                <when test="loc != null and loc != '' ">
+                    and loc = #{loc}
+                </when>
+                <otherwise>
+                    and 1=1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+    <sql id="publicSql">
+        select deptno,dname deptName,loc
+    </sql>
+<!-- 查询列表foreach -->
+    <select id="listDeptByParamForeach" parameterType="list" resultType="dept">
+         <include refid="publicSql"></include> from dept where deptno in
+--           集合(10,20,30,40)   separator分隔器
+        <foreach collection="list" open="(" close=")" separator="," item="dno">
+            #{dno}
+        </foreach>
+    </select>
+<!-- 部门更新 （set + if）根据参数动态拼接更新语句
+    更操作（insert update delete）不能有resultType resultMap
+-->
+    <update id="updateDeptParam" parameterType="dept">
+        update dept
+        <trim prefix="set" suffixOverrides=",">
+            <if test="deptName != null and deptName != ''">-->
+                dname=#{deptName},
+            </if>
+            <if test="loc != null and loc != ''">
+                dname=#{loc},
+            </if>
+        </trim>
+
+<!--        <set>-->
+<!--&#45;&#45;         多个条件至少满足一个，若都不满足，会报错-->
+<!--&#45;&#45;         这个例子中，set 元素会动态地在行首插入 SET 关键字，并会删掉额外的逗号（这些逗号是在使用条件语句给列赋值时引入的）。-->
+<!--            <if test="deptName != null and deptName != ''">-->
+<!--                dname=#{deptName},-->
+<!--            </if>-->
+<!--            <if test="loc != null and loc != ''">-->
+<!--                dname=#{loc},-->
+<!--            </if>-->
+<!--        </set>-->
+        where deptno=#{deptNo}
+    </update>
+<!--  if + trim 用法 -->
+    <select id="listDeptByParamTrim" parameterType="dept" resultType="cn.cobight.mybatis.entity.Dept">
+        select deptno,dname deptName,loc from dept
+--         prefix整体加前缀，suffix整体加后缀
+--         prefixOverrides子句删前缀，suffixOverrides子句删后缀
+--         <trim suffix="" suffixOverrides=","></trim>
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="deptNo != null">
+                and deptno = #{deptNo}
+            </if>
+            <if test="deptName != null and deptName != '' ">
+                and dname like '%'||#{deptName}||'%'
+                <!--             and deptno like '%${deptName}%' -->
+            </if>
+        </trim>
+
+    </select>
+
+</mapper>
