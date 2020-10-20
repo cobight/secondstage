@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aaa.ssm.dao.NewsDao">
+    <!--新闻列表-->
+    <select id="list" resultType="com.aaa.ssm.entity.News">
+        select NEWS_ID newsId, TITLE, CONTENT, ADDTIME, TYPE_ID typeId, CLICKNUM
+        from tb_news
+    </select>
+    <!--查询所有的新闻类型-->
+    <select id="listAllNewsType" resultType="map">
+        select * from tb_news_type
+    </select>
+    <!--新闻添加-->
+    <insert id="add" parameterType="com.aaa.ssm.entity.News">
+         <!--mybatis专门为oracle设置的selectKey标签   查出下一个值赋值哪个属性keyProperty
+         数据库对应列keyColumn
+         order 插入语句之前或者之后执行  在此一定配置之前获取-->
+         <selectKey resultType="int"  keyProperty="newsId" keyColumn="news_id" order="BEFORE">
+            select seq_news_id.nextval from dual
+         </selectKey>
+         insert into tb_news values(#{newsId},#{title},#{content},sysdate,#{typeId},0)
+    </insert>
+</mapper>

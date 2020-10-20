@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部门添加</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jqueryJSON.js"></script>
+
+    <script>
+        $(function () {
+            var url = document.location.href;
+            var deptNo=url.substr(url.indexOf("="));
+            $.ajax({
+                url:"http://localhost:8082/deptRestful/getById.do?deptNo"+deptNo,
+                type:"GET",//请求方式
+                contentType: 'application/json',
+                dataType:"json",//返回值类型
+                success:function(data){
+                    $.each(data,function(k,v){
+                        $("form").find("input[name='"+k+"']").val(v);
+                        console.log(k,v);
+                    })
+                },
+                error:function(data){
+                }
+            });
+        });
+        function sub() {
+            $.ajax({
+                url:"http://localhost:8082/deptRestful/update.do",
+                type:"PUT",//请求方式
+                contentType: 'application/json',
+                data:JSON.stringify($("form").serializeJSON()),
+                //dataType:"json",//返回值类型
+                success:function(data){
+                    alert("修改成功");
+                    window.location.href="/html/dept/list.html"
+                },
+                error:function(data){
+                    alert("修改失败")
+                }
+            });
+
+        }
+
+    </script>
+</head>
+<body>
+    <center>
+        <form>
+            <table>
+                <tr>
+                    <td>部门名称</td>
+                    <td>位置</td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" name="deptNo" value=""><input type="text" name="dname" placeholder="部门名称"/></td>
+                    <td><input type="text" name="loc" placeholder="位置"/></td>
+                </tr>
+                <tr><td colspan="2"><input type="button" onclick="sub()" value="修改部门"></td></tr>
+            </table>
+        </form>
+
+    </center>
+</body>
+</html>

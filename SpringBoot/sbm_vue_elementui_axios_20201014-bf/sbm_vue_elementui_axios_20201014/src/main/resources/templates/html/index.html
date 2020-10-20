@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台首页</title>
+    <!--vue js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--elementui css js-->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--axios-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+   <div id="app">
+        <el-container>
+            <el-header>Header</el-header>
+            <el-container>
+                <el-aside width="200px">
+                    <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+                </el-aside>
+                <el-main>Main</el-main>
+            </el-container>
+        </el-container>
+   </div>
+   <script>
+       var app = new Vue({
+           el:'#app',
+           data:{
+               defaultProps: {
+                   children: 'children',
+                   label: 'label'
+               },
+               data:[]
+           },
+           created:function(){
+               _this = this;
+               //初始化
+               axios.get('/power/treeData')
+                   .then(function (response) {
+                       //正确请求时，回调函数
+                       console.log(response);
+                       if(response.data.code==2000){
+                           _this.data = response.data.data;
+                       }
+                   })
+                   .catch(function (error) {
+                       //失败处理
+                       console.log(error);
+                   });
+           },
+           methods:{
+               //节点点击事件
+               handleNodeClick(data) {
+                   console.log(data);
+               }
+           }
+       });
+   </script>
+</body>
+</html>

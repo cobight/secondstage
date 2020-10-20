@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ssm_demo0929_intercept_schedule:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>ssm_demo0929_intercept_schedule</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="ssm_demo0929_intercept_schedule.war">
+      <element id="artifact" artifact-name="ssm_demo0929_intercept_schedule:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<!-- 开启包扫描   -->
+    <context:component-scan base-package="cn.cobight.ssm.controller"></context:component-scan>
+<!-- 开启spring注解式驱动   -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!--上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--允许上传文件最大大小  默认是字节 大约10M-->
+        <property name="maxUploadSize" value="10240000"></property>
+    </bean>
+<!-- 开启视图解析器   -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+<!--  同意异常处理  -->
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+<!--  发生错误时，默认跳转页面  结合视图解析器一起使用，真正路径/WEB-INF/jsp/default-error.jsp-->
+        <property name="defaultErrorView" value="default-error"></property>
+<!--  在错误页面输出异常信息时，使用属性名称，否则默认exception      -->
+        <property name="exceptionAttribute" value="ex"></property>
+    </bean>
+    <bean class="cn.cobight.ssm.util.GlobalExceptionHandler"></bean>
+<!--  拦截器  -->
+    <mvc:interceptors>
+<!--     配置用户登陆拦截器   -->
+        <mvc:interceptor>
+<!--       拦截路径     -->
+<!--            拦截二级请求-->
+            <mvc:mapping path="/*/*.do"/>
+            <bean class="cn.cobight.ssm.interceptor.UserLoginInterceptor" />
+        </mvc:interceptor>
+<!--      其他拦截器  -->
+    </mvc:interceptors>
+
+</beans>

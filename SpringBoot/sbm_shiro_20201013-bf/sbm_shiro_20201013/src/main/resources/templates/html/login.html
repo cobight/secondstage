@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script>
+         //初始化
+          $(function() {
+               $("#loginBtn").click(function(){
+                   var userN = $("#userName").val();
+                   var passW = $("#passWord").val();
+                   if($.trim(userN)==''||$.trim(passW)==''){
+                       $("#divInfo").html("用户名或者密码不能为空");
+                       return;
+                   }
+                   $.ajax({
+                       url:"/user/login",
+                       type:"GET",
+                       data:{userName:userN,passWord:passW},
+                       dataType:"json",
+                       success:function(data){
+                           if(data!=''&&data!=null){
+                               if(data.code==200){
+                                   location.href="/html/dept/list.html"
+                               }else {
+                                   $("#divInfo").html(data.message);
+                               }
+                           }
+                       },
+                       error:function(){
+                           $("#divInfo").html("请求失败");
+                       }
+                   });
+               });
+            });
+        </script>
+</head>
+<body>
+<center>
+    <h3>用户登录</h3><br>
+    <div style="color: red" id="divInfo"></div>
+        <!--content="aaa"&title="test"  {content:"aaaa",title:'test'}-->
+        <table border="1" width="400px;">
+            <tr align="center"><td>用户名</td><td><input type="text" id="userName" name="userName"  > </td></tr>
+            <tr align="center"><td>密码</td><td><input type="text" id="passWord"  name="passWord"  >  </td></tr>
+            <tr align="center"><td colspan="2"><input type="button" id="loginBtn" value="登录">&nbsp;<input type="button" onclick="javascript:location.href='/html/register.html'" value="去注册"> </td></tr>
+        </table>
+</center>
+</body>
+</html>

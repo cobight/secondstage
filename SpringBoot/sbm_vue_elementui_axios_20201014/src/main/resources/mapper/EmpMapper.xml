@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cobight.sbm.dao.EmpDao">
+    <select id="list" resultType="cn.cobight.sbm.entity.Emp">
+        "select empNo,ename,job,mgr,hireDate,sal,comm,deptNo from emp"
+    </select>
+    <select id="page" parameterType="map" resultType="cn.cobight.sbm.entity.Emp">
+        select * from (select rownum rn, empNo,ename,job,mgr,hireDate,sal,comm,deptNo from emp
+        <where>
+        <if test="deptNo!=null and deptNo!=''"> and deptNo like '%'||#{deptNo}||'%'</if>
+        <if test="eName!=null and eName!=''"> and eName like '%'||#{eName}||'%'</if>
+        <if test="job!=null and job!=''"> and job like '%'||#{job}||'%'</if>
+        </where>
+        ) a where rn &gt; #{start} and rn &lt; #{end}
+    </select>
+    <select id="pageCount" parameterType="map" resultType="int">
+        select count(*) from emp
+        <where>
+            <if test="empNo!=null and empNo!=''"> and empNo like '%'||#{empNo}||'%'</if>
+            <if test="ename!=null and ename!=''"> and ename like '%'||#{ename}||'%'</if>
+            <if test="job!=null and job!=''"> and job like '%'||#{job}||'%'</if>
+            <if test="deptNo!=null and deptNo!=''"> and job like '%'||#{deptNo}||'%'</if>
+        </where>
+    </select>
+    <select id="getById" resultType="cn.cobight.sbm.entity.Emp">
+        select empNo,ename,job,mgr,hireDate,sal,comm,deptNo from emp where empNo=#{empNo}
+    </select>
+    <insert id="add" parameterType="cn.cobight.sbm.entity.Emp">
+        insert into emp(empNo,ename,job,mgr,hireDate,sal,comm,deptNo)
+        values(seq_emp_id.nextval,#{ename},#{job},#{mgr,jdbcType=INTEGER},sysdate,#{sal},#{comm},#{deptNo})
+    </insert>
+    <delete id="del">
+        delete from emp where empNo=#{empNo}
+    </delete>
+    <update id="upd" parameterType="emp">
+        update emp set ename=#{ename},job=#{job},mgr=#{mgr,jdbcType=INTEGER},sal=#{sal,jdbcType=INTEGER},comm=#{comm,jdbcType=INTEGER},deptNo=#{deptNo,jdbcType=INTEGER} where empNo=#{empNo}
+    </update>
+</mapper>

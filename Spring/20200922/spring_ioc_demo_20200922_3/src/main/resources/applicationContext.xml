@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--xsd   xml schema difinition 一定引入了定义，里面标签就不可以随便写，和dtd-->
+   <!--IOC(Inversion of Control 控制反转)原来需要自己实例化对象，现在springioc容器提供方法，
+   不用自己去new对象,把我们要使用的对象通过bean标签配置，让ioc容器帮我们实例化对象，控制权反转给了IOC容器，
+   所以叫控制反转
+       IOC又叫DI（Dependency Injection） 依赖注入 userController 依赖userService
+                userService 又依赖  userDao  我们使用springioc 容器提供的方式，把
+                依赖的一个类主要到要依赖的类中，这种就叫依赖
+            3种    setter 注入    constructor 注入    注解注入(最常用的方式)
+   -->
+    <!--开启组件扫描 component-scan 组件扫描 扫描配置包下的所有类，看谁的类头上有spring注解，交给IOC容器管理-->
+    <context:component-scan base-package="com.aaa.ioc"></context:component-scan>
+    <!--注解注入-->
+    <!-- @Controller  控制层 注解 专门负责注解控制层的类，交给springioc容器管理
+         @Service  服务层注解  专门负责注解服务层的类，交给springioc容器管理
+         @Repository  Dao层注解  专门负责注解DAO层的类，交给springioc容器管理
+         @Component   不属于三层注解  专门负责注解不在三层之内的类，交给springioc容器管理
+
+         @Autowire  spring提供 依赖注入注解  默认按照byType 方式注入
+         @Resource  javax提供的注解   (type=xxx.class) 按类型注入  (name="") 按名称注入
+     -->
+</beans>

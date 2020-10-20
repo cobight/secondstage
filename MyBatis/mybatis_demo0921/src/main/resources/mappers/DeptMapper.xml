@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--1,隔离语句 2，绑定接口-->
+<mapper namespace="cn.cobight.dao.DeptDao">
+
+    <!--分页带参数查询-->
+    <select id="pageDept" parameterType="java.util.HashMap" resultType="Dept">
+        select deptno,dname as deptName,loc from
+            (select rownum rn,t.* from
+                (select deptno,dname,loc from dept
+                    <where>
+                        <if test="deptN!=null and deptN!=''">
+                            and dname like '%'||#{deptN}||'%'
+                        </if>
+                        <if test="loc!=null and loc!=''">
+                            and loc like '%'||#{loc}||'%'
+                        </if>
+                    </where>
+                order by dname) t where rownum &lt; #{end}
+            ) a where a.rn &gt; #{start}
+    </select>
+    <select id="pageDeptCount" parameterType="map" resultType="int">
+        select count(*) from dept
+        <where>
+            <if test="deptN!=null and deptN!=''">
+                and dname like '%'||#{deptN}||'%'
+            </if>
+            <if test="loc!=null and loc!=''">
+                and loc like '%'||#{loc}||'%'
+            </if>
+        </where>
+    </select>
+    <!--默认缓存标签  使用默认属性  二级缓存可以能调用第三方做缓存，涉及对象传输，对象一定要序列化-->
+    <!-- <cache  flushInterval="10" size="2"></cache>-->
+    <!--部门列表查询  useCache="false" 不写默认为true  useCache="false"不使用缓存 -->
+    <select id="listDept" resultType="Dept">
+        <!--查询映射不区分大小写-->
+        select deptno,dname as deptName,loc from dept
+    </select>
+    <!--普通部门列表方法，带上一个分页参数 Page-->
+    <select id="pageDeptPlugin" parameterType="cn.cobight.util.Page" resultType="cn.cobight.entity.Dept">
+        <!--查询映射不区分大小写-->
+        select deptno,dname as deptName,loc from dept
+    </select>
+
+</mapper>

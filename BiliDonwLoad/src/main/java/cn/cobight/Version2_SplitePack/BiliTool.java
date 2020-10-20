@@ -22,15 +22,15 @@ import java.util.concurrent.*;
 public class BiliTool {
     public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
 
-        downbili("BV1o5411873u");
+        downbili("BV1qV411m7CC","t=2307");
 
     }
 
-    public static void downbili(String bvPath) throws ExecutionException, InterruptedException, IOException {
+    public static void downbili(String bvPath,String param) throws ExecutionException, InterruptedException, IOException {
         long start = System.currentTimeMillis();
         String BV = "https://www.bilibili.com/video/" + bvPath;
         //第一个请求偷下懒，没用socket
-        String HTML = RequestTool.sendGet(BV, null);
+        String HTML = RequestTool.sendGet(BV, param);
         int index1 = HTML.indexOf("<script>window.__playinfo__");
         int index2 = HTML.indexOf("</script>", index1);
         String mediaJson = HTML.substring(index1 + 28, index2);
@@ -46,6 +46,7 @@ public class BiliTool {
         System.out.println(audioUrl + "\n" + audioInitialization + "\n" + audioIndexRange);
         //通过 Executors获取一个定长的线程池  定长为3 超过线程池长度时就会等待
         ExecutorService executorService = Executors.newFixedThreadPool(10);//返回一个执行器的服务类
+        System.out.println("开始下载");
         //使用线程池启动线程
         donwLoad audio = new donwLoad(audioUrl, audioIndexRange, BV, "https://www.bilibili.com");
         donwLoad video = new donwLoad(videoUrl, videoIndexRange, BV, "https://www.bilibili.com");

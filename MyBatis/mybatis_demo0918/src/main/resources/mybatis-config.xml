@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--dtd =document type definition 规定了当前文档类型定义格式-->
+<configuration>
+<!-- 全局配置设置 -->
+    <settings>
+<!--   让控制台打印执行语句     -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+<!--  别名配置  -->
+    <typeAliases>
+<!--        <typeAlias type="cn.cobight.mybatis.entity.Dept" alias="Dept"></typeAlias>-->
+        <package name="cn.cobight.mybatis.entity"/>
+    </typeAliases>
+
+<!--  环境配置，可以配置多个环境  -->
+    <environments default="development">
+<!--    具体环境配置    -->
+        <environment id="development">
+<!--    事务管理配置 type="jdbc" 自行处理事务 type="managed"把事务交给容器管理        -->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+                <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+                <property name="username" value="scott"/>
+                <property name="password" value="coby"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mappers/NewsMapperTest.xml"></mapper>
+    </mappers>
+</configuration>

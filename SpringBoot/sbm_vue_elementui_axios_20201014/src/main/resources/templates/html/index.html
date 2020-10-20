@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <style>
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+            line-height: 36px;
+        }
+
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            line-height: 36px;
+            height: 540px;
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
+        <el-tab-pane
+                v-for="(item, index) in editableTabs"
+                :key="item.name"
+                :label="item.title"
+                :name="item.name"
+        >
+            <iframe :src="item.url" width="100%" height="530px" scrolling="no" frameborder="0"></iframe>
+        </el-tab-pane>
+    </el-tabs>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--shiro过滤器工厂实例  配置拦截到所有请求的处理-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--设值注入 name不可以乱写-->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- override these for application-specific URLs if you like:-->
+        <!-- 拦截到未认证链接，跳转的路径    -->
+        <property name="loginUrl" value="/toLogin.do"/>
+        <!-- 认证成功默认跳转路径，只有session中没有保存跳转路径时，该配置才会生效   -->
+        <property name="successUrl" value="/home.jsp"/>
+<!--  访问一个未授权的页面，会跳到此路径      -->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <!-- The 'filters' property is not necessary since any declared javax.servlet.Filter bean  -->
+        <!-- defined will be automatically acquired and available via its beanName in chain        -->
+        <!-- definitions, but you can perform instance overrides or name aliases here if you like: -->
+        <!-- <property name="filters">
+            <util:map>
+                <entry key="anAlias" value-ref="someFilter"/>
+            </util:map>
+        </property> -->
+        <property name="filterChainDefinitions">
+            <value>
+                # some example chain definitions:
+                #/admin/** = authc, roles[admin]    #要访问admin下的资源，必须是admin角色  【roles角色】
+                #/docs/** = authc, perms[document:read]     #要访问docs下的资源，必须有read权限  【perms权限】
+                #放开资源文件
+                /css/**   anon
+                #本路径下的资源不需要拦截认证
+                /js/**   anon
+                /images/**   anon
+                #放开登录
+                /userLogin.do   anon
+                /toLogin.do   anon
+                #放开注册
+                /toRegister.do    anon
+                /register.do    anon
+
+                #剩下的其他资源
+                /** = authc
+                #任何路径都要认证
+                # more URL-to-FilterChain definitions here
+            </value>
+        </property>
+    </bean>
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
+        <property name="realm" ref="myRealm"/>
+        <!-- By default the servlet container sessions will be used.  Uncomment this line
+             to use shiro's native sessions (see the JavaDoc for more): -->
+        <!-- <property name="sessionMode" value="native"/> -->
+    </bean>
+    <!-- shiro中使用的bean的生命周期由spring管理-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+    <!--myRealm配置-->
+    <bean id="myRealm" class="com.aaa.ssm.util.myRealm">
+        <property name="credentialsMatcher" ref="cm"></property>
+    </bean>
+    <!--加密算法类-->
+    <bean id="cm" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="SHA-512"></property>
+        <property name="hashIterations" value="10"></property>
+    </bean>
+</beans>

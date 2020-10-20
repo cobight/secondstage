@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--dtd = document type definition   规定了当前文档类型定义格式-->
+<configuration>
+    <settings>
+        <!--让控制台打印语句-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+<!--        sql 空值 为 null-->
+        <setting name="jdbcTypeForNull" value="NULL"></setting>
+        <!--全局缓存配置  让所有二级缓存不生效，配置false -->
+        <setting name="cacheEnabled" value="false"></setting>
+    </settings>
+    <!--别名配置-->
+    <typeAliases>
+        <!--  <typeAlias type="com.aaa.mybatis.entity.Dept" alias="dt"></typeAlias>-->
+        <package name="cn.cobight.sbm.entity"></package>
+    </typeAliases>
+    <!--全局设置配置-->
+
+</configuration>

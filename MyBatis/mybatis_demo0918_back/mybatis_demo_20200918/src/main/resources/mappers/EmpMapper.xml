@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--1,隔离语句 2，绑定接口-->
+<mapper namespace="com.aaa.mybatis.dao.EmpDao">
+    <!--演示cache标签作用域-->
+    <delete id="deleteById"  parameterType="int">
+        delete from dept where deptno = #{dn}
+    </delete>
+    <!--列出员工信息及部门信息-->
+    <select id="listEmpsAndDept" resultMap="empsAndDept">
+        select e.empno as en,e.ename,e.sal,e.job,d.deptno,d.dname,d.loc
+        from emp e join dept d  on e.deptno=d.deptno
+    </select>
+    <!--高级结果映射-->
+    <resultMap id="empsAndDept" type="com.aaa.mybatis.entity.Emp">
+        <id column="en" property="empNo" javaType="int" jdbcType="INTEGER"></id>
+        <result column="ename" property="empName"></result>
+        <result column="sal" property="salary"></result>
+        <result column="job" property="job"></result>
+        <!--关联 一对一或者多对一-->
+        <association property="dept" javaType="com.aaa.mybatis.entity.Dept">
+            <id column="deptno" property="deptNo"></id>
+            <result column="dname" property="deptName"></result>
+            <result column="loc" property="loc"></result>
+        </association>
+    </resultMap>
+
+    <!--根据部门名称查询员工信息（存储过程调用）
+    statementType=CALLABLE 调用存储过程或者函数时专用
+    默认不写时为PREPARED  =PreparedStatement-->
+    <select id="execProListEmpsByDeptName" parameterType="map" statementType="CALLABLE">
+        {call pro_select_empinfo_bydname(
+          #{deptName,mode=IN,javaType=String,jdbcType=VARCHAR},
+          #{empList,mode=OUT,javaType=ResultSet,jdbcType=CURSOR,resultMap=emps}
+        )}
+    </select>
+    <!--查询结果映射-->
+    <resultMap id="emps" type="emp">
+        <id column="empno" property="empNo"></id>
+        <result column="ename" property="empName"></result>
+        <result column="sal" property="salary"></result>
+        <result column="job" property="job"></result>
+    </resultMap>
+   <!-- <insert id="">
+
+    </insert>
+    <update id="">
+
+    </update>
+    <delete id="">
+
+    </delete>-->
+</mapper>

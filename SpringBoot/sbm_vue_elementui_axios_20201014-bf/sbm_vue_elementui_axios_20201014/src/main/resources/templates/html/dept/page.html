@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部门分页列表</title>
+    <!--vue js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--elementui css js-->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--axios-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--搜索-->
+        <el-row>
+            <el-col :span="6"><el-input v-model="dname" size="mini" placeholder="请输入部门名称"></el-input></el-col>
+            <el-col :span="6"><el-input v-model="loc"  size="mini" placeholder="请输入部门位置"></el-input></el-col>
+            <el-col :span="6"><el-button type="primary" @click="search"  size="mini" icon="el-icon-search">搜索</el-button>
+            &nbsp;<el-button type="primary"  size="mini" icon="el-icon-circle-plus" @click="handleAdd">添加</el-button></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light">&nbsp;</div></el-col>
+        </el-row>
+        <!--分页列表显示-->
+        <el-row>
+            <el-table
+                    :data="tableData"
+                    style="width: 100%">
+                <el-table-column
+                        prop="deptNo"
+                        label="部门编号"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="dname"
+                        label="名称"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="loc"
+                        label="位置">
+                </el-table-column>
+                <el-table-column label="操作">
+                    <template slot-scope="scope">
+                        <el-button
+                                size="mini"
+                                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                        <el-button
+                                size="mini"
+                                type="danger"
+                                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-row>
+        <!--分页插件-->
+        <el-row>
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-sizes="[2,3,5,10,100, 200, 300, 400]"
+                    :page-size="pageSize"
+                        layout="total, sizes, prev, pager, next, jumper"
+                    :total="total">
+            </el-pagination>
+        </el-row>
+        <!--添加和更新 弹框-->
+        <el-row>
+            <el-dialog :title="title" :visible.sync="dialogFormVisible">
+                <el-form :model="form">
+                    <el-form-item label="部门名称" :label-width="formLabelWidth">
+                        <el-input v-model="form.dname" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="位置" :label-width="formLabelWidth">
+                        <el-input v-model="form.loc" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="addOrUpdate">确 定</el-button>
+                </div>
+            </el-dialog>
+        </el-row>
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                tableData:[],
+                currentPage:1,//当前页面，默认1
+                pageSize:2,//每页显示条数
+                total:100,//分页总数量，默认值随便写，初始化时赋予新值
+                dname:'',//查询功能
+                loc:'',
+                dialogFormVisible:false,
+                title:'部门添加',
+                form:{}
+            },
+            created:function(){
+               //初始化
+                this.loadData();
+            },
+            methods:{
+                //加载数据
+                loadData(){
+                    _this = this;
+                    //初始化
+                    axios.get('/dept/page',{
+                        params: {
+                            pageNo: this.currentPage,
+                            pageSize:this.pageSize,
+                            dname:this.dname,
+                            loc:this.loc
+                        }
+                    })
+                        .then(function (response) {
+                            //正确请求时，回调函数
+                            console.log(response);
+                            if(response.data.code==2000){
+                                _this.tableData = response.data.data.pageDept;
+                                _this.total = response.data.data.total;
+                            }
+                        })
+                        .catch(function (error) {
+                            //失败处理
+                            console.log(error);
+                        });
+                },
+                //各种绑定事件方法
+                //每页数量发生变化
+                handleSizeChange(val) {
+                    console.log(`每页 ${val} 条`);
+                    this.pageSize=val;
+                    this.loadData();
+                   /* axios.get('/dept/page',{
+                        params: {
+                            pageNo: this.currentPage,
+                            pageSize: this.pageSize
+                        }
+                    })
+                        .then(function (response) {
+                            //正确请求时，回调函数
+                            console.log(response);
+                            if(response.data.code==2000){
+                                _this.tableData = response.data.data.pageDept;
+                                _this.total = response.data.data.total;
+                            }
+                        })
+                        .catch(function (error) {
+                            //失败处理
+                            console.log(error);
+                        });*/
+                },
+                //当前页发生变化
+                handleCurrentChange(val) {
+                    console.log(`当前页: ${val}`);
+                    this.currentPage=val;
+                    this.loadData();
+                    /*axios.get('/dept/page',{
+                        params: {
+                            pageNo: this.currentPage,
+                            pageSize:this.pageSize
+                        }
+                    })
+                        .then(function (response) {
+                            //正确请求时，回调函数
+                            console.log(response);
+                            if(response.data.code==2000){
+                                _this.tableData = response.data.data.pageDept;
+                                _this.total = response.data.data.total;
+                            }
+                        })
+                        .catch(function (error) {
+                            //失败处理
+                            console.log(error);
+                        });*/
+                },
+                //查询方法
+                search(){
+                   this.loadData();
+                },
+                //处理添加
+                handleAdd(){
+                    //清空原来form
+                    this.form={};
+                    //更新显示名称
+                    this.title="部门添加";
+                    //对话框显示
+                    this.dialogFormVisible=true;
+                },
+                //处理编辑（弹出部门更新对话框）
+                handleEdit(index, row) {
+                    console.log(index, row);
+                    //{deptNo:10,dname:'ACCOUNTING',loc:'纽约'}
+                    this.form=row;
+                    //更新显示名称
+                    this.title="部门更新";
+                    //对话框显示
+                    this.dialogFormVisible=true;
+                },
+
+                //提交表单数据（添加或者更新）
+                addOrUpdate(){
+                    var  url ='/dept/update';
+                    if(this.form.deptNo==''||this.form.deptNo==null){
+                        url="/dept/add"
+                    }
+                    _this=this;
+                    //提交方法
+                    axios.post(url, this.form)
+                        .then(function (response) {
+                            console.log(response);
+                            //提交成功
+                            if(response.data.code==2000){
+                                //关闭弹出框
+                                _this.dialogFormVisible=false;
+                                //提示更新成功
+                                _this.$message({
+                                  //  message: '恭喜你，这是一条成功消息',
+                                    message: response.data.message,
+                                    type: 'success'
+                                });
+                                //重新加载数据
+                                _this.loadData();
+                            }else {
+                                _this.$message.error(response.data.message);
+                            }
+                        })
+                        .catch(function (error) {
+                            _this.$message.error('错了哦，这是一条错误消息');
+                        });
+                },
+                //处理删除（ 部门删除）
+                handleDelete(index, row) {
+                    console.log(index, row);
+                    _this=this;
+                    //确认弹框
+                    this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        //执行删除
+                        axios.delete('/dept/delete?deptNo='+row.deptNo)
+                            .then(function (response) {
+                                //判断删除是否成功
+                                 if(response.data.code==2000){
+                                     //提示
+                                     _this.$message({
+                                         type: 'success',
+                                         message: '删除成功!'
+                                     });
+                                     //重新加载数据
+                                     _this.loadData();
+                                 }else {
+                                     _this.$message.error(response.data.message);
+                                 }
+                            })
+                            .catch(function (error) {
+                                //失败处理
+                                console.log(error);
+                                _this.$message.error('删除失败!');
+                            });
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                    });
+
+
+                }
+            }
+        });
+    </script>
+</body>
+</html>

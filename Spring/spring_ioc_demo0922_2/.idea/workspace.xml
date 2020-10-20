@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8d6780d6-5784-4ab7-bc46-90d02a4bc308" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="spring-beans.schema" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\Maven363\localware" />
+        <option name="mavenHome" value="D:/Maven363/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\Maven363\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hr4OFthWw2vosMSS75C8IysQ9G" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RunManager" selected="JUnit.IocTest.testPrinter">
+    <configuration name="IocTest.testPrinter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring_ioc_demo0922_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.ioc.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.cobight.ioc.test" />
+      <option name="MAIN_CLASS_NAME" value="cn.cobight.ioc.test.IocTest" />
+      <option name="METHOD_NAME" value="testPrinter" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IocTest.testUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring_ioc_demo0922_1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.ioc.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.cobight.ioc.test" />
+      <option name="MAIN_CLASS_NAME" value="cn.cobight.ioc.test.IocTest" />
+      <option name="METHOD_NAME" value="testUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.IocTest.testPrinter" />
+        <item itemvalue="JUnit.IocTest.testUser" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8d6780d6-5784-4ab7-bc46-90d02a4bc308" name="Default Changelist" comment="" />
+      <created>1600755842804</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600755842804</updated>
+      <workItem from="1600755846927" duration="6662000" />
+      <workItem from="1600769824156" duration="7346000" />
+      <workItem from="1600820666373" duration="6212000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="570" y="118" key="#IocTest.testUser" timestamp="1600820808520">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="570" y="118" key="#IocTest.testUser/0.0.1920.1040@0.0.1920.1040" timestamp="1600820808520" />
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1600777954627">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600777954627" />
+    <state x="751" y="201" key="#com.intellij.ide.util.MemberChooser" timestamp="1600843913405">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="751" y="201" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1600843913405" />
+    <state width="1877" height="388" key="GridCell.Tab.0.bottom" timestamp="1600847392043">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="388" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600847392043" />
+    <state width="1877" height="388" key="GridCell.Tab.0.center" timestamp="1600847392042">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="388" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600847392042" />
+    <state width="1877" height="388" key="GridCell.Tab.0.left" timestamp="1600847392041">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="388" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600847392041" />
+    <state width="1877" height="388" key="GridCell.Tab.0.right" timestamp="1600847392042">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="388" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600847392042" />
+    <state width="1877" height="324" key="GridCell.Tab.1.bottom" timestamp="1600847392034">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="324" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600847392034" />
+    <state width="1877" height="324" key="GridCell.Tab.1.center" timestamp="1600847392031">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="324" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600847392031" />
+    <state width="1877" height="324" key="GridCell.Tab.1.left" timestamp="1600847392030">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="324" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600847392030" />
+    <state width="1877" height="324" key="GridCell.Tab.1.right" timestamp="1600847392033">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="324" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600847392033" />
+  </component>
+</project>

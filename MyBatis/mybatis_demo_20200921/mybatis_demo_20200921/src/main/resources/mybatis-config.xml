@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--dtd = document type definition   规定了当前文档类型定义格式-->
+<configuration>
+    <!--全局设置配置-->
+     <settings>
+       <!--让控制台打印语句-->
+         <setting name="logImpl" value="STDOUT_LOGGING"/>
+         <setting name="jdbcTypeForNull" value="NULL"></setting>
+         <!--全局缓存配置  让所有二级缓存不生效，配置false -->
+         <!--<setting name="cacheEnabled" value="false"></setting>-->
+   </settings>
+
+    <!--别名配置-->
+    <typeAliases>
+      <!--  <typeAlias type="com.aaa.mybatis.entity.Dept" alias="dt"></typeAlias>-->
+        <package name="com.aaa.mybatis.entity"></package>
+    </typeAliases>
+
+    <!--插件配置-->
+    <plugins>
+        <plugin interceptor="com.aaa.mybatis.plugins.PagePlugin">
+            <property name="dtPageNo" value="1"></property>
+            <property name="dtPageSize" value="3"></property>
+        </plugin>
+    </plugins>
+    <!--环境配置 可以配置多个环境-->
+    <environments default="development">
+        <!--具体环境配置-->
+        <environment id="development">
+            <!--事务管理配置  type ="jdbc" 自行处理事务  type="managed"  把事务交给容器管理-->
+            <transactionManager type="JDBC"/>
+            <!--数据源配置  UNPOOLED|POOLED|JNDI -->
+            <dataSource type="POOLED">
+                <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+                <property name="url" value="jdbc:oracle:thin:@192.168.1.183:1521:orcl"/>
+                <property name="username" value="scott"/>
+                <property name="password" value="coby"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--映射文件配置-->
+    <mappers>
+        <mapper resource="mappers/DeptMapper.xml"/>
+    </mappers>
+</configuration>

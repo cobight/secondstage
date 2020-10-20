@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cobight.mybatis.dao.UsersAndRolesDao">
+    <select id="listGetUsersAndRoles" resultMap="usersAndRoles">
+        select u.user_id,u.user_name,u.real_name,u.age,r.role_id,r.role_name from tb_user u
+        left join tb_user_role ur  on u.user_id=ur.user_id
+        left join tb_role r on ur.role_id=r.role_id
+    </select>
+    <resultMap id="usersAndRoles" type="Users">
+        <id column="user_id" property="userId"></id>
+        <result column="user_name" property="userName"></result>
+        <result column="real_name" property="realName"></result>
+        <result column="age" property="age"></result>
+        <collection property="roles" ofType="Roles">
+            <id column="role_id" property="roleId"></id>
+            <result column="role_name" property="roleName"></result>
+        </collection>
+    </resultMap>
+</mapper>

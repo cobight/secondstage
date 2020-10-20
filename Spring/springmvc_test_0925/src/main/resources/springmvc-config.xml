@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!--配置自定义处理器-->
+   <!-- <bean name="/deptList" class="com.aaa.mvc.controller.DeptController"></bean>
+   -->
+    <!--开启组件扫描-->
+    <context:component-scan base-package="com.aaa.test.controller"></context:component-scan>
+    <!--开启springmvc注解驱动-->
+  <!--  <mvc:annotation-driven></mvc:annotation-driven>-->
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 配置前缀 设值注入-->
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <!--配置后缀-->
+        <!--真正视图路径 /WEB-INF/jsp/dept/list.jsp-->
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+</beans>

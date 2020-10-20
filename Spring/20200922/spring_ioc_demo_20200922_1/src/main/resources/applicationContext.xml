@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--xsd   xml schema difinition 一定引入了定义，里面标签就不可以随便写，和dtd-->
+   <!--IOC(Inversion of Control 控制反转)原来需要自己实例化对象，现在springioc容器提供方法，
+   不用自己去new对象,把我们要使用的对象通过bean标签配置，让ioc容器帮我们实例化对象，控制权反转给了IOC容器，
+   所以叫控制反转
+       ICO又叫DI（Dependency Injection） 依赖注入 userController 依赖userService
+                userService 又依赖  userDao  我们使用springioc 容器提供的方式，把
+                依赖的一个类主要到要依赖的类中，这种就叫依赖
+            3种    setter 注入    constructro 注入    注解注入
+   -->
+    <!--setter 注入  要求注入的属性必须有setter方法-->
+    <!-- scope =  prototype 原型  singleton  单例-->
+    <bean id="userC"  class="com.aaa.ioc.controller.UserController" scope="prototype">
+        <!--//依赖注入 references 引用   -->
+        <property name="userService" ref="userS"></property>
+        <property name="userId" value="9527"></property>
+    </bean>
+    <!--接口不可以交给spring管理-->
+     <!--自动装配 autowire （自动装配引用类型，基本数据类型无法自动装配）
+        类型：
+                1 根据类型装配  byType  根据接口类型
+               2, 根据名称装配 byName   根据属性名称
+               3, 不使用自动装配
+               4， 根据构造自动装配
+     -->
+    <bean id="userS" class="com.aaa.ioc.service.UserServiceImpl"  autowire="no">
+       <property name="userDao" ref="userDao"></property>
+    </bean>
+     <bean name="userDao" class="com.aaa.ioc.dao.UserDaoImpl">
+     </bean>
+</beans>

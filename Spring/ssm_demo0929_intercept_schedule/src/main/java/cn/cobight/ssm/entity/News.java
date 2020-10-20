@@ -1,0 +1,91 @@
+package cn.cobight.ssm.entity;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * fileName:News
+ * description:
+ * author:cobight
+ * createTime:2020/9/26 9:06
+ * version:1.0.0
+ */
+public class News {
+    private Integer newsId;
+    private String title;
+    private String content;
+    private Date addTime;
+    private Integer typeId;
+    private Integer clickNum;
+
+    private List<NewsFile> newsFileList;
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "newsId=" + newsId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", addTime=" + addTime +
+                ", typeId=" + typeId +
+                ", clickNum=" + clickNum +
+                ", newsFileList=" + newsFileList +
+                '}';
+    }
+
+    public Integer getNewsId() {
+        return newsId;
+    }
+
+    public void setNewsId(Integer newsId) {
+        this.newsId = newsId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public Integer getClickNum() {
+        return clickNum;
+    }
+
+    public void setClickNum(Integer clickNum) {
+        this.clickNum = clickNum;
+    }
+
+    public List<NewsFile> getNewsFileList() {
+        return newsFileList;
+    }
+
+    public void setNewsFileList(List<NewsFile> newsFileList) {
+        this.newsFileList = newsFileList;
+    }
+}

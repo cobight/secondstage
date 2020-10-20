@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cobight.mybatis.dao.EmpDao">
+    <select id="execProListEmpsByDeptName" parameterType="map" statementType="CALLABLE">
+        {call pro_select_empinfo_bydname(
+        #{deptName,mode=IN,javaType=String,jdbcType=VARCHAR},
+        #{empList,mode=OUT,javaType=ResultSet,jdbcType=CURSOR,resultMap=emps}
+        )}
+    </select>
+    <resultMap id="emps" type="emp">
+        <id column="empno" property="empNo"></id>
+        <result column="ename" property="empName"></result>
+        <result column="sal" property="salary"></result>
+        <result column="job" property="job"></result>
+    </resultMap>
+</mapper>

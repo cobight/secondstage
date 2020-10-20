@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+        <!--开启服务层类扫描-->
+        <context:component-scan base-package="com.aaa.ssm.service"></context:component-scan>
+        <!-- 加载数据源配置文件 -->
+        <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="location" value="classpath:dbcp.properties"></property>
+        </bean>
+        <!--使用dbcp连接池配置数据源-->
+        <!-- dbcp连接池配置 -->
+        <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+            <property name="driverClassName" value="${jdbc.driver}"></property>
+            <property name="url" value="${jdbc.url}"></property>
+            <property name="username" value="${jdbc.username}"></property>
+            <property name="password" value="${jdbc.password}"></property>
+            <property name="initialSize" value="${initialSize}"></property>
+            <property name="maxActive" value="${maxActive}"></property>
+            <property name="maxIdle" value="${maxIdle}"></property>
+            <property name="minIdle" value="${minIdle}"></property>
+            <property name="maxWait" value="${maxWait}"></property>
+        </bean>
+
+        <!-- 创建SqlSessionFactory  -->
+        <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+            <!-- 加载数据源 -->
+            <property name="dataSource" ref="dataSource"></property>
+            <!-- 加载mapper文件 -->
+            <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+        </bean>
+        <!-- 利用配置的mybatis接口和配置文件 把dao实例化 -->
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <property name="basePackage" value="com.aaa.ssm.dao"></property>
+            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        </bean>
+        <!-- spring 声明式事务 注解 定义事务管理器 -->
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+            <property name="dataSource" ref="dataSource"/>
+        </bean>
+        <!-- 注解驱动，启动注解 -->
+        <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

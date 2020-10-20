@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>vue示例</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			  <game-for v-for="game in games" v-bind:g="game" v-bind:key="game.id">
+			  </game-for>
+		</div>
+		<script>
+			Vue.component("game-for",
+			{
+				props:["g"],
+				template:'<li>{{g.gname}}-{{g.desc}}</li>'
+			})
+			var app = new Vue({
+				el:"#app",
+				data:{
+					games:[{id:1001,gname:"lol",desc:"好玩上课都在玩"},
+					       {id:1002,gname:"王者荣耀",desc:"上分太难"},
+						   {id:1003,gname:"和平精英",desc:"祝贺吃鸡"}]
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -16,11 +16,15 @@ import java.util.concurrent.TimeUnit;
  * @Version 1.0
  **/
 public class M3u8ThreadDownLoad {
+    public static void main1(String[] args) {//mix file
+        Tool_m3u8.merge_ts("F:\\JAVA\\secondstage\\multiThread\\download\\1600323531356", 734);
+    }
 
     public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
         //自己换
-        String url = "https://baidu.com-y-qq.com/20190202/7762_aee57137/1000k/hls/index.m3u8";
+        String url = "https://m3u8.pps11.com/wodeshipin_water_m3u8/luoliMM/195_20200331_00495/195_20200331_00495.m3u8";
+        //
         long time = new Date().getTime();
         //System.out.println(new File("").getAbsolutePath());
         File f = new File("download\\" + time);
@@ -34,9 +38,9 @@ public class M3u8ThreadDownLoad {
          */
         t.load_m3u8(url, "" + time, 12);
         long stop = System.currentTimeMillis();
-        long allsecond=(stop - start)/1000, min=allsecond/60,second=allsecond-60*min;
+        long allsecond = (stop - start) / 1000, min = allsecond / 60, second = allsecond - 60 * min;
 
-        System.out.println("下载消耗时长：" + min+"分钟，"+second+"秒");
+        System.out.println("下载消耗时长：" + min + "分钟，" + second + "秒");
     }
 
     static class Tool_m3u8 {
@@ -89,6 +93,7 @@ public class M3u8ThreadDownLoad {
                     list.add(uri + s);
                 }
             }
+            System.out.println("数量：" + list.size());
             return list;
         }
 
@@ -106,7 +111,29 @@ public class M3u8ThreadDownLoad {
                 for (int i = 0; i < this.length; i++) {
                     File f = new File(PATH + "\\file.mp4" + i + ".ts");
                     InputStream is = new FileInputStream(f);//我记得想用list.get(i)来着
-                    byte[] temp = new byte[1024];
+                    byte[] temp = new byte[1024 * 3];
+                    int len;
+                    while ((len = is.read(temp)) != -1) {
+                        os.write(temp, 0, len);
+                        os.flush();
+                    }
+                    is.close();
+                    f.delete();
+                }
+                os.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public static void merge_ts(String PATH, int fileLength) {
+            String outputPATH = PATH + "\\file.mp4";//合并文件位置
+            try {
+                OutputStream os = new FileOutputStream(outputPATH);
+                for (int i = 0; i < fileLength; i++) {
+                    File f = new File(PATH + "\\file.mp4" + i + ".ts");
+                    InputStream is = new FileInputStream(f);//我记得想用list.get(i)来着
+                    byte[] temp = new byte[1024 * 3];
                     int len;
                     while ((len = is.read(temp)) != -1) {
                         os.write(temp, 0, len);

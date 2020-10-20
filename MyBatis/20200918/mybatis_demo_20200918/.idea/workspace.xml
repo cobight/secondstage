@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="00b68426-14d9-4ed8-ac15-e09888e0ae27" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\Maven363\localware" />
+        <option name="mavenHome" value="D:/Maven363/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\Maven363\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hfscl2d3RQFfuMhM2WKx1DILes" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RunManager" selected="JUnit.DeptDaoTest.testOneLevelCache">
+    <configuration name="DeptDaoTest.testOneLevelCache" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo_20200918" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.aaa.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.aaa.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="com.aaa.mybatis.test.DeptDaoTest" />
+      <option name="METHOD_NAME" value="testOneLevelCache" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NewsDaoTest.testAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo_20200918" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.aaa.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.aaa.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="com.aaa.mybatis.test.NewsDaoTest" />
+      <option name="METHOD_NAME" value="testAdd" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DeptDaoTest.testOneLevelCache" />
+        <item itemvalue="JUnit.NewsDaoTest.testAdd" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="00b68426-14d9-4ed8-ac15-e09888e0ae27" name="Default Changelist" comment="" />
+      <created>1600413562567</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600413562567</updated>
+      <workItem from="1600413568227" duration="2524000" />
+      <workItem from="1600475622489" duration="1990000" />
+      <workItem from="1600609383060" duration="2002000" />
+      <workItem from="1600647644605" duration="1281000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1877" height="214" key="GridCell.Tab.0.bottom" timestamp="1600612137002">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="214" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600612137002" />
+    <state width="1877" height="214" key="GridCell.Tab.0.center" timestamp="1600612137002">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="214" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600612137002" />
+    <state width="1877" height="214" key="GridCell.Tab.0.left" timestamp="1600612137002">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="214" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600612137002" />
+    <state width="1877" height="214" key="GridCell.Tab.0.right" timestamp="1600612137002">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="214" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600612137002" />
+  </component>
+</project>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8b02ed5a-7517-4801-b22c-0fdec104f30a" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\Maven363\localware" />
+        <option name="mavenHome" value="D:/Maven363/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\Maven363\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ikyDw5XnRJ2Dgjvwfk5ZkeqReS" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\JAVA\secondstage\SpringBoot\springboot_demo_20201012\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.helloControllerTest.getHello">
+    <configuration name="helloControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot_demo_20201012" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.cobight" />
+      <option name="MAIN_CLASS_NAME" value="cn.cobight.helloControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="helloControllerTest.getHello" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot_demo_20201012" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.cobight" />
+      <option name="MAIN_CLASS_NAME" value="cn.cobight.helloControllerTest" />
+      <option name="METHOD_NAME" value="getHello" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="springboot_demo_20201012" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.sb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.cobight.sb.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.helloControllerTest.getHello" />
+        <item itemvalue="Spring Boot.Application" />
+        <item itemvalue="JUnit.helloControllerTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8b02ed5a-7517-4801-b22c-0fdec104f30a" name="Default Changelist" comment="" />
+      <created>1602465768068</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602465768068</updated>
+      <workItem from="1602465772492" duration="4903000" />
+      <workItem from="1602472319510" duration="4293000" />
+      <workItem from="1602573997891" duration="9000" />
+      <workItem from="1602574058955" duration="331000" />
+      <workItem from="1602593662187" duration="6000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="16" y="617" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602490521997">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="16" y="617" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1602490521997" />
+    <state x="648" y="269" key="#com.intellij.ide.util.MemberChooser" timestamp="1602490974040">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="648" y="269" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1602490974040" />
+    <state x="753" y="341" key="FileChooserDialogImpl" timestamp="1602467163280">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="753" y="341" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602467163280" />
+    <state width="1487" height="343" key="GridCell.Tab.0.bottom" timestamp="1602574389991">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1487" height="343" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602574389991" />
+    <state width="1487" height="343" key="GridCell.Tab.0.center" timestamp="1602574389991">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1487" height="343" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602574389991" />
+    <state width="1487" height="343" key="GridCell.Tab.0.left" timestamp="1602574389991">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1487" height="343" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602574389991" />
+    <state width="1487" height="343" key="GridCell.Tab.0.right" timestamp="1602574389991">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1487" height="343" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602574389991" />
+    <state width="1487" height="343" key="GridCell.Tab.1.bottom" timestamp="1602574389986">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1487" height="343" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602574389986" />
+    <state width="1487" height="343" key="GridCell.Tab.1.center" timestamp="1602574389986">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1487" height="343" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602574389986" />
+    <state width="1487" height="343" key="GridCell.Tab.1.left" timestamp="1602574389986">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1487" height="343" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602574389986" />
+    <state width="1487" height="343" key="GridCell.Tab.1.right" timestamp="1602574389986">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1487" height="343" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602574389986" />
+    <state x="453" y="161" key="SettingsEditor" timestamp="1602467204916">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="453" y="161" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602467204916" />
+    <state x="132" y="97" key="new project wizard" timestamp="1602492156196">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="132" y="97" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1602492156196" />
+    <state x="190" y="270" width="672" height="678" key="search.everywhere.popup" timestamp="1602490605877">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="190" y="270" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602490605877" />
+  </component>
+</project>

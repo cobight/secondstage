@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jqueryJSON.js"></script>
+    <script>
+        //初始化
+        $(function () {
+            //注册按钮添加事件
+            $("#regBtn").click(function () {
+                var userN = $("#userName").val();
+                var realN = $("#realName").val();
+                var passW = $("#passWord").val();
+                if ($.trim(userN)==''||$.trim(passW)==''||$.trim(realN)==''){
+                    $("divInfo").html("用户名、姓名或者密码不能为空");
+                    return;
+                }
+                var userJson = {"userName":userN,"realName":realN,"passWord":passW};
+                $.ajax({
+                    url:"/user/register",
+                    type:"POST",
+                    contentType:"application/json;charset=utf-8",
+                    data:JSON.stringify(userJson),
+                    dataType:"json",
+                    success:function (data) {
+                        if (data!='' && data!=null){
+                            if (data.code === 200){
+                                location.href = "/html/login.html";
+                            }else {
+                                $("#divInfo").html("注册失败");
+                            }
+                        }
+                    },
+                    error:function () {
+                        $("#divInfo").html("请求失败");
+                    }
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+<center>
+    <h3>用户注册</h3><br>
+    <div style="color: red" id="divInfo"></div>
+    <form>
+        <!--content="aaa"&title="test"  {content:"aaaa",title:'test'}-->
+        <table border="1" width="400px;">
+            <tr align="center"><td>用户名</td><td><input id="userName" type="text"  name="userName"  > </td></tr>
+            <tr align="center"><td>姓名</td><td><input id="realName" type="text"  name="realName"  > </td></tr>
+            <tr align="center"><td>密码</td><td><input id="passWord" type="text"  name="passWord"  >  </td></tr>
+            <tr align="center"><td colspan="2"><input id="regBtn" type="button" value="登录"> </td></tr>
+        </table>
+    </form>
+</center>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b744ab81-fa41-49de-9505-e0424d48c05e" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\Maven363\localware" />
+        <option name="mavenHome" value="D:/Maven363/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\Maven363\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hdlhn9cs00bwggUGTJf90kiU1G" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="NewsDaoTest.NewsDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo0918" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.cobight.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="cn.cobight.mybatis.test.NewsDaoTest" />
+      <option name="METHOD_NAME" value="NewsDaoTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.NewsDaoTest.NewsDaoTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b744ab81-fa41-49de-9505-e0424d48c05e" name="Default Changelist" comment="" />
+      <created>1600348971502</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600348971502</updated>
+      <workItem from="1600348979345" duration="2368000" />
+      <workItem from="1600388364437" duration="2183000" />
+      <workItem from="1600413372950" duration="776000" />
+      <workItem from="1600609294499" duration="18000" />
+      <workItem from="1601006422038" duration="1810000" />
+      <workItem from="1602819300107" duration="26000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="765" y="195" key="#com.intellij.ide.util.MemberChooser" timestamp="1600349519030">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="195" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1600349519030" />
+    <state width="1877" height="578" key="GridCell.Tab.0.bottom" timestamp="1600411721522">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="578" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600411721522" />
+    <state width="1877" height="578" key="GridCell.Tab.0.center" timestamp="1600411721522">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="578" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600411721522" />
+    <state width="1877" height="578" key="GridCell.Tab.0.left" timestamp="1600411721522">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="578" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600411721522" />
+    <state width="1877" height="578" key="GridCell.Tab.0.right" timestamp="1600411721522">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="578" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600411721522" />
+    <state x="453" y="161" key="SettingsEditor" timestamp="1600413403923">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="453" y="161" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1600413403923" />
+  </component>
+</project>

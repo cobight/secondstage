@@ -1,0 +1,7 @@
+alter table tb_user modify pass_word varchar2(500);
+alter table tb_user add password_salt varchar2(20);
+create sequence  seq_user_id
+start with 1005;
+
+--   修改 1005账号对应的角色编号
+select * from tb_user_role for update;

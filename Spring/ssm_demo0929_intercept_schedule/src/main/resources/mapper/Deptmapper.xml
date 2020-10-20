@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cobight.ssm.dao.DeptDao">
+    <select id="list" resultType="cn.cobight.ssm.entity.Dept">
+        select * from dept
+    </select>
+    <select id="getById" resultType="cn.cobight.ssm.entity.Dept">
+        select * from dept where deptNo=#{deptNo}
+    </select>
+    <update id="update" parameterType="cn.cobight.ssm.entity.Dept">
+        update dept set dname=#{dName},loc=#{loc} where deptno=#{deptNo}
+    </update>
+    <insert id="insert" parameterType="cn.cobight.ssm.entity.Dept">
+        insert into dept(deptno,dname,loc) values(#{deptNo},#{dName},#{loc})
+    </insert>
+    <delete id="delete">
+        delete from dept where deptno=#{deptNo}
+    </delete>
+    <!--备份表添加-->
+    <insert id="addBak">
+         insert into dept_bak values(seq_dept_bak_id.nextval,#{dname},#{loc})
+     </insert>
+</mapper>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部门列表</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function(){
+        //  var url =   document.location.href; //http://localhost:8080/html/dept/update.html?deptNo=10;
+               $.ajax({
+                   url:"http://localhost:8082/deptRestful/list.do",
+                   type:"GET",//请求方式
+                   dataType:"json",//返回值类型
+                   success:function(data){
+                       //获取数据，解析
+                        if(data!=null&&data!='null'&&data!=''&&data!=undefined){
+                            var tbody = $("#tbd");
+                            for (var i = 0; i < data.length; i++) {
+                                var dept = data[i];
+                                tbody.append("<tr><td>"+dept.deptNo+"</td><td>"+dept.dname+"</td><td>"+dept.loc+"</td><td><a href='/html/dept/update.html?deptNo="+dept.deptNo+"'>更新</a>&nbsp;<a onclick='del("+dept.deptNo+")' href='javascript:void(0);'>删除</a></td></td></tr>");
+                            }
+                        }
+                   },
+                   error:function(data){
+                       alert("数据加载异常");
+                   }
+               });
+        });
+        function del(deptNo) {
+            $.ajax({
+                url:"http://localhost:8082/deptRestful/delete/"+deptNo+".do",
+                type:"DELETE",//请求方式
+                // dataType:"json",//返回值类型
+                success:function(data){
+                    alert("删除成功");
+                    window.location.href="/html/dept/list.html";
+                },
+                error:function(data){
+                    alert("删除失败");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<center>
+    <h3>部门列表</h3><br>
+    <a href="http://localhost:8082/html/dept/add.html">添加</a><br>
+    <table border="1" width="800px;">
+        <tr><td>编号</td><td>名称</td><td>位置</td><td>操作</td></tr>
+         <tbody id="tbd">
+         </tbody>
+    </table>
+</center>
+</body>
+</html>

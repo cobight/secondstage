@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--1,隔离语句 2，绑定接口-->
+<mapper namespace="com.aaa.mybatis.dao.DeptDao">
+    <!--默认缓存标签  使用默认属性  二级缓存可以能调用第三方做缓存，涉及对象传输，对象一定要序列化-->
+    <cache   ></cache>
+    <!--部门列表查询  useCache="false" 不写默认为true  useCache="false"不使用缓存 -->
+    <select id="listDept" resultType="com.aaa.mybatis.entity.Dept" >
+       <!--查询映射不区分大小写-->
+       select deptno,dname as deptName,loc from dept
+    </select>
+
+    <select id="listDeptA" resultType="com.aaa.mybatis.entity.Dept" >
+        <!--查询映射不区分大小写-->
+        select deptno,dname as deptName,loc from dept
+    </select>
+    <select id="listDeptB" resultType="com.aaa.mybatis.entity.Dept" >
+        <!--查询映射不区分大小写-->
+        select deptno,dname as deptName,loc from dept
+    </select>
+    <!--部门更新（set+if根据参数动态拼接更新语句）
+      更新操作（insert update delete）不能有resultType  resultMap-->
+    <update id="updateDeptByParam" parameterType="dept">
+           update dept
+           <!--
+             多个条件时，至少满足一个条件，如果一个不满足，就会报错
+           set 元素会动态地在行首插入 SET 关键字 并会删掉额外的逗号-->
+        <!--suffixOverrides="," 后缀替换掉  -->
+        <trim prefix="set" suffixOverrides=",">
+            <if test="deptName!=null and deptName!=''">
+                dname = #{deptName},
+            </if>
+            <if test="loc!=null and loc!=''">
+                loc = #{loc},
+            </if>
+        </trim>
+          <!-- <set>
+               <if test="deptName!=null and deptName!=''">
+                   dname = #{deptName},
+               </if>
+               <if test="loc!=null and loc!=''">
+                   loc = #{loc},
+               </if>
+           </set>-->
+            where deptno=#{deptNo}
+    </update>
+
+    <!--部门添加  解决无效类类型1111 错误，1，把为null的字段添加上jdbcType=VARCHAR ，列很多，写着复杂
+                                           2，在全局setting配置中配置jdbcTypeForNull =NULL-->
+    <insert id="add" parameterType="dept">
+    <!--insert into dept values(seq_dept_id.nextval,#{deptName},#{loc,jdbcType=VARCHAR})-->
+      insert into dept values(seq_dept_id.nextval,#{deptName},#{loc})
+  </insert>
+
+  <!--部门删除   当执行语句只有参数时，参数名称可以不和形参对应-->
+    <delete id="deleteById"  parameterType="int">
+    delete from dept where deptno = #{dn}
+</delete>
+    <!--<delete id="deleteById"  >
+         delete from dept where deptno = #{dn} and dname=#{de}
+    </delete>-->
+</mapper>

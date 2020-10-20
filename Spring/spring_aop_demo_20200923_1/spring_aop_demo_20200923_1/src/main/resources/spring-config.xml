@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--把服务层bean交给springioc容器管理-->
+    <bean id="deptService" class="com.aaa.aop.service.DeptServiceImpl"></bean>
+    <bean id="orderService" class="com.aaa.aop.service.OrderServiceImpl"></bean>
+    <!--通知或者增强 类 交给spring管理-->
+    <bean id="logHandler" class="com.aaa.aop.util.LogHandler"></bean>
+
+    <!--aop配置-->
+    <aop:config>
+        <!--切入点配置  regexp = regular expression    execution 切入点表达式
+         修改符为public 返回值为int  第一个* 所有类  * 类下所有方法  ..0到多个参数-->
+        <aop:pointcut id="pcA" expression="execution(public * com.aaa.aop.service.*.save*(..)) or execution(public * com.aaa.aop.service.*.insert*(..)) or execution(public * com.aaa.aop.service.*.add*(..)) or execution(public * com.aaa.aop.service.*.update*(..)) or execution(public * com.aaa.aop.service.*.delete*(..))"></aop:pointcut>
+        <!--切面配置   ref="logHandler" 指向切面的具体实现类（通知或者增强类）-->
+        <aop:aspect ref="logHandler">
+            <!--前置通知-->
+            <aop:before method="beforeExecute" pointcut-ref="pcA"></aop:before>
+            <!--环绕通知  相当于前置和后置一个整合，不同  1，可以决定调用不调用业务方法  2，有返回值-->
+<!--            <aop:around method="aroundExecute" pointcut-ref="pcA"></aop:around>-->
+            <!--异常通知  出现异常时，才会被调用-->
+            <aop:after-throwing method="exceptionExecute" pointcut-ref="pcA" throwing="ex"></aop:after-throwing>
+            <!--后置通知  执行业务之后，再执行的增强功能  执行修改后，保存修改日志-->
+            <aop:after-returning method="saveLog" pointcut-ref="pcA"></aop:after-returning>
+            <!--最终通知-->
+            <aop:after method="afterExecute" pointcut-ref="pcA"></aop:after>
+        </aop:aspect>
+    </aop:config>
+</beans>

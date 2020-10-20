@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>vue示例</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			 <span v-bind:title="msg" >
+				 随便放点。。。
+			 </span>
+		</div>
+		<script>
+			var app = new Vue({
+				el:"#app",
+				data:{
+					msg:"页面加载于"+new Date().toLocaleString()
+				}
+			});
+		</script>
+	</body>
+</html>

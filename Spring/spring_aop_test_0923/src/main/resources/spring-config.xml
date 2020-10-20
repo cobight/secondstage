@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean id="goodService" class="com.aaa.aoptest.service.GoodsServiceImpl"></bean>
+    <bean id="exceptionHandlerUtil" class="com.aaa.aoptest.util.ExceptionHandlerUitl"></bean>
+    <aop:config>
+        <aop:pointcut id="cut1" expression="execution(public int com.aaa.aoptest.service.GoodsServiceImpl.delete(..))"/>
+        <aop:aspect ref="exceptionHandlerUtil">
+
+            <!--异常通知  出现异常时，才会被调用-->
+            <aop:after-throwing method="handlerException" pointcut-ref="cut1" throwing="ex"></aop:after-throwing>
+
+        </aop:aspect>
+
+    </aop:config>
+</beans>

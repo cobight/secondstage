@@ -1,0 +1,56 @@
+<web-app
+version="3.0"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+<display-name>Archetype Created Web Application</display-name>
+     <!--spring 监听器 开始-->
+           <!--作用： 1，加载配置文件  2，加载配置初始化Bean-->
+           <listener>
+             <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+           </listener>
+           <context-param>
+             <param-name>contextConfigLocation</param-name>
+             <!--spring整合mybatis配置-->
+             <param-value>classpath:spring-mybatis-config.xml</param-value>
+           </context-param>
+     <!--spring 监听器 结束-->
+     <!--配置过滤器解决post中文乱码 开始-->
+         <filter>
+             <filter-name>charSet</filter-name>
+             <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+             <init-param>
+                 <param-name>encoding</param-name>
+                 <param-value>utf-8</param-value>
+             </init-param>
+         </filter>
+         <filter-mapping>
+             <filter-name>charSet</filter-name>
+             <url-pattern>/*</url-pattern>
+         </filter-mapping>
+     <!--配置过滤器解决post中文乱码 结束-->
+     <!--springmvc 调度器 开始-->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--加载自定义配置文件-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc-config.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+    <!--springmvc 调度器 结束-->
+    <!--资源免过滤  不进行拦截的资源配置-->
+    <!--<servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+    </servlet-mapping>-->
+</web-app>

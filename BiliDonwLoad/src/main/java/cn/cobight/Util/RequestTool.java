@@ -24,6 +24,7 @@ public class RequestTool {
      * @return URL 所代表远程资源的响应结果
      */
     public static String sendGet(String url, String param) {
+        System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
         StringBuilder result = new StringBuilder();
         BufferedReader in = null;
         try {
@@ -32,6 +33,7 @@ public class RequestTool {
             System.out.println(urlNameString);
             URL realUrl = new URL(urlNameString);
             // 打开和URL之间的连接
+
             URLConnection connection = realUrl.openConnection();
             // 设置通用的请求属性
             connection.setRequestProperty("User-Agent",

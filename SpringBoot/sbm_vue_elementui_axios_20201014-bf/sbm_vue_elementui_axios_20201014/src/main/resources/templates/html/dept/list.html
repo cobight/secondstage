@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部门列表</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script>
+        //初始化
+        $(function() {
+                $.ajax({
+                    url:"/dept/list",
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data){
+                         $("#dataShow").html(data);
+                    },
+                    error:function(){
+                        $("#divInfo").val("请求失败");
+                    }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="dataShow"></div>
+</body>
+</html>

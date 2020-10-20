@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部门列表</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jqueryJSON.js"></script>
+    <script>
+
+        //初始化
+        $(function () {
+            $.ajax({
+                url: "/dept/list",
+                dataType: "json",
+                success: function (data) {
+                    //$("#dataShow").val(data);
+                    $.each(data,function (index,obj) {
+                        $("#table").append("<tr>\n" +
+                            "            <td>"+obj.deptNo+"</td>\n" +
+                            "            <td>"+obj.dname+"</td>\n" +
+                            "            <td>"+obj.loc+"</td>\n" +
+                            "            <td><a href=\"\">更新</a>&nbsp;<a href=\"\">删除</a></td>\n" +
+                            "        </tr>");
+                    })
+                },
+                error: function () {
+                    $("#divInfo").html("请求失败");
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+<div id="dataShow">
+    <table id="table" border="1" width="800px;">
+        <tr><td>编号</td><td>名称</td><td>位置</td><td>操作</td></tr>
+
+
+
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1ff45e0b-5492-4096-a538-f40f7cb64ffa" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\Maven363\localware" />
+        <option name="mavenHome" value="D:/Maven363/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\Maven363\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hcvapZkBKKTVazRmXYBIWLLhGg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/cn/cobight/mybatis/entity" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\JAVA\secondstage\MyBatis\mybatis_demo0917\src\main\java\cn\cobight\mybatis\entity" />
+      <recent name="F:\JAVA\secondstage\MyBatis\mybatis_demo0917\src\test\java\cn\cobight\mybatis\test" />
+      <recent name="F:\JAVA\secondstage\MyBatis\mybatis_demo0917\src\main\resources\mappers" />
+      <recent name="F:\JAVA\secondstage\MyBatis\mybatis_demo0917\src\main\java\cn\cobight\mybatis\dao" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.EmpCallTest.EmpCall">
+    <configuration name="EmpCallTest.EmpCall" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo0917" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.cobight.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="cn.cobight.mybatis.test.EmpCallTest" />
+      <option name="METHOD_NAME" value="EmpCall" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NewsTypeDaoTest.newsTypeAndNews" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo0917" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.cobight.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="cn.cobight.mybatis.test.NewsTypeDaoTest" />
+      <option name="METHOD_NAME" value="newsTypeAndNews" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NewsTypeDaoTest.testListNewsTypeAndNews" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo0917" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.cobight.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="cn.cobight.mybatis.test.NewsTypeDaoTest" />
+      <option name="METHOD_NAME" value="testListNewsTypeAndNews" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsersAndRolesDaoTest.usersAndRoles" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo0917" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.cobight.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="cn.cobight.mybatis.test.UsersAndRolesDaoTest" />
+      <option name="METHOD_NAME" value="usersAndRoles" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="demo0916.testListNewsType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo0917" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.cobight.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.cobight.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="cn.cobight.mybatis.test.demo0916" />
+      <option name="METHOD_NAME" value="testListNewsType" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.EmpCallTest.EmpCall" />
+        <item itemvalue="JUnit.NewsTypeDaoTest.newsTypeAndNews" />
+        <item itemvalue="JUnit.UsersAndRolesDaoTest.usersAndRoles" />
+        <item itemvalue="JUnit.NewsTypeDaoTest.testListNewsTypeAndNews" />
+        <item itemvalue="JUnit.demo0916.testListNewsType" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1ff45e0b-5492-4096-a538-f40f7cb64ffa" name="Default Changelist" comment="" />
+      <created>1600323260378</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600323260378</updated>
+      <workItem from="1600323287086" duration="6776000" />
+      <workItem from="1600339774210" duration="6985000" />
+      <workItem from="1602819337314" duration="35000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="765" y="195" key="#com.intellij.ide.util.MemberChooser" timestamp="1600344999451">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="195" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1600344999451" />
+    <state x="690" y="265" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600348484076">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="265" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600348484076" />
+    <state width="1877" height="356" key="GridCell.Tab.0.bottom" timestamp="1600348915538">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="356" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600348915538" />
+    <state width="1877" height="356" key="GridCell.Tab.0.center" timestamp="1600348915538">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="356" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600348915538" />
+    <state width="1877" height="356" key="GridCell.Tab.0.left" timestamp="1600348915538">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="356" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600348915538" />
+    <state width="1877" height="356" key="GridCell.Tab.0.right" timestamp="1600348915538">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="356" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600348915538" />
+  </component>
+</project>

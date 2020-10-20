@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2d6e6ea0-61b2-4c7c-8c2d-95c4418b3fa0" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\Maven363\localware" />
+        <option name="mavenHome" value="D:/Maven363/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\Maven363\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hoFwrTBGhbRYgIBFfwo0n6xusW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunManager" selected="JUnit.DeptDaoTest.testPageDept">
+    <configuration name="DeptDaoTest.testListDept" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo_20200921" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.aaa.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.aaa.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="com.aaa.mybatis.test.DeptDaoTest" />
+      <option name="METHOD_NAME" value="testListDept" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeptDaoTest.testOneLevelCache" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo_20200921" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.aaa.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.aaa.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="com.aaa.mybatis.test.DeptDaoTest" />
+      <option name="METHOD_NAME" value="testOneLevelCache" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeptDaoTest.testPageDept" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo_20200921" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.aaa.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.aaa.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="com.aaa.mybatis.test.DeptDaoTest" />
+      <option name="METHOD_NAME" value="testPageDept" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeptDaoTest.testPageDeptPlugin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis_demo_20200921" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.aaa.mybatis.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.aaa.mybatis.test" />
+      <option name="MAIN_CLASS_NAME" value="com.aaa.mybatis.test.DeptDaoTest" />
+      <option name="METHOD_NAME" value="testPageDeptPlugin" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DeptDaoTest.testPageDept" />
+        <item itemvalue="JUnit.DeptDaoTest.testPageDeptPlugin" />
+        <item itemvalue="JUnit.DeptDaoTest.testOneLevelCache" />
+        <item itemvalue="JUnit.DeptDaoTest.testListDept" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2d6e6ea0-61b2-4c7c-8c2d-95c4418b3fa0" name="Default Changelist" comment="" />
+      <created>1600669779864</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600669779864</updated>
+      <workItem from="1600669927101" duration="810000" />
+      <workItem from="1600670765613" duration="14916000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#SQL_Dialects" timestamp="1600670785128">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#SQL_Dialects/0.0.1920.1040@0.0.1920.1040" timestamp="1600670785128" />
+    <state width="1860" height="320" key="GridCell.Tab.0.bottom" timestamp="1600698433950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="320" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600698433950" />
+    <state width="1860" height="320" key="GridCell.Tab.0.center" timestamp="1600698433950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="320" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600698433950" />
+    <state width="1860" height="320" key="GridCell.Tab.0.left" timestamp="1600698433950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="320" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600698433949" />
+    <state width="1860" height="320" key="GridCell.Tab.0.right" timestamp="1600698433950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="320" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600698433950" />
+    <state width="1860" height="320" key="GridCell.Tab.1.bottom" timestamp="1600698433950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="320" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600698433950" />
+    <state width="1860" height="320" key="GridCell.Tab.1.center" timestamp="1600698433950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="320" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600698433950" />
+    <state width="1860" height="320" key="GridCell.Tab.1.left" timestamp="1600698433950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="320" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600698433950" />
+    <state width="1860" height="320" key="GridCell.Tab.1.right" timestamp="1600698433950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="320" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600698433950" />
+    <state x="453" y="161" key="SettingsEditor" timestamp="1600670738276">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="453" y="161" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1600670738276" />
+    <state x="334" y="125" key="new project wizard" timestamp="1600689758109">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="334" y="125" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1600689758109" />
+  </component>
+</project>

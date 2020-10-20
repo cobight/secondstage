@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>vue示例</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			 <p>{{msg}}</p>
+			 <li-component></li-component>
+			 <li-component></li-component>
+			 <li-component></li-component>
+			 <li-component></li-component>
+			 <li-component></li-component>
+		</div>
+		<script>
+			//定义组件  一次开发，可以重复使用
+			Vue.component('li-component',// 组件名称
+			              {template:"<li>这是一个li发发的说法</li>"});
+			var app = new Vue({
+				el:"#app",
+				data:{
+					 msg:"我上楼复习"
+				} 
+			});
+		</script>
+	</body>
+</html>
